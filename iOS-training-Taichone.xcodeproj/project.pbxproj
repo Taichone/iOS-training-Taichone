@@ -1,0 +1,568 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		74CEA9832C9A9383000F94B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74CEA9642C9A9382000F94B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74CEA96B2C9A9382000F94B4;
+			remoteInfo = "iOS-training-Taichone";
+		};
+		74CEA98D2C9A9383000F94B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74CEA9642C9A9382000F94B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74CEA96B2C9A9382000F94B4;
+			remoteInfo = "iOS-training-Taichone";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		74CEA96C2C9A9382000F94B4 /* iOS-training-Taichone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-training-Taichone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		74CEA9822C9A9383000F94B4 /* iOS-training-TaichoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-training-TaichoneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		74CEA98C2C9A9383000F94B4 /* iOS-training-TaichoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-training-TaichoneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		74CEA9942C9A9383000F94B4 /* Exceptions for "iOS-training-Taichone" folder in "iOS-training-Taichone" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 74CEA96B2C9A9382000F94B4 /* iOS-training-Taichone */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		74CEA96E2C9A9382000F94B4 /* iOS-training-Taichone */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				74CEA9942C9A9383000F94B4 /* Exceptions for "iOS-training-Taichone" folder in "iOS-training-Taichone" target */,
+			);
+			path = "iOS-training-Taichone";
+			sourceTree = "<group>";
+		};
+		74CEA9852C9A9383000F94B4 /* iOS-training-TaichoneTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "iOS-training-TaichoneTests";
+			sourceTree = "<group>";
+		};
+		74CEA98F2C9A9383000F94B4 /* iOS-training-TaichoneUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "iOS-training-TaichoneUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		74CEA9692C9A9382000F94B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74CEA97F2C9A9383000F94B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74CEA9892C9A9383000F94B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		74CEA9632C9A9382000F94B4 = {
+			isa = PBXGroup;
+			children = (
+				74CEA96E2C9A9382000F94B4 /* iOS-training-Taichone */,
+				74CEA9852C9A9383000F94B4 /* iOS-training-TaichoneTests */,
+				74CEA98F2C9A9383000F94B4 /* iOS-training-TaichoneUITests */,
+				74CEA96D2C9A9382000F94B4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		74CEA96D2C9A9382000F94B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				74CEA96C2C9A9382000F94B4 /* iOS-training-Taichone.app */,
+				74CEA9822C9A9383000F94B4 /* iOS-training-TaichoneTests.xctest */,
+				74CEA98C2C9A9383000F94B4 /* iOS-training-TaichoneUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		74CEA96B2C9A9382000F94B4 /* iOS-training-Taichone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74CEA9952C9A9383000F94B4 /* Build configuration list for PBXNativeTarget "iOS-training-Taichone" */;
+			buildPhases = (
+				74CEA9682C9A9382000F94B4 /* Sources */,
+				74CEA9692C9A9382000F94B4 /* Frameworks */,
+				74CEA96A2C9A9382000F94B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				74CEA96E2C9A9382000F94B4 /* iOS-training-Taichone */,
+			);
+			name = "iOS-training-Taichone";
+			packageProductDependencies = (
+			);
+			productName = "iOS-training-Taichone";
+			productReference = 74CEA96C2C9A9382000F94B4 /* iOS-training-Taichone.app */;
+			productType = "com.apple.product-type.application";
+		};
+		74CEA9812C9A9383000F94B4 /* iOS-training-TaichoneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74CEA99A2C9A9383000F94B4 /* Build configuration list for PBXNativeTarget "iOS-training-TaichoneTests" */;
+			buildPhases = (
+				74CEA97E2C9A9383000F94B4 /* Sources */,
+				74CEA97F2C9A9383000F94B4 /* Frameworks */,
+				74CEA9802C9A9383000F94B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74CEA9842C9A9383000F94B4 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				74CEA9852C9A9383000F94B4 /* iOS-training-TaichoneTests */,
+			);
+			name = "iOS-training-TaichoneTests";
+			packageProductDependencies = (
+			);
+			productName = "iOS-training-TaichoneTests";
+			productReference = 74CEA9822C9A9383000F94B4 /* iOS-training-TaichoneTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		74CEA98B2C9A9383000F94B4 /* iOS-training-TaichoneUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74CEA99D2C9A9383000F94B4 /* Build configuration list for PBXNativeTarget "iOS-training-TaichoneUITests" */;
+			buildPhases = (
+				74CEA9882C9A9383000F94B4 /* Sources */,
+				74CEA9892C9A9383000F94B4 /* Frameworks */,
+				74CEA98A2C9A9383000F94B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74CEA98E2C9A9383000F94B4 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				74CEA98F2C9A9383000F94B4 /* iOS-training-TaichoneUITests */,
+			);
+			name = "iOS-training-TaichoneUITests";
+			packageProductDependencies = (
+			);
+			productName = "iOS-training-TaichoneUITests";
+			productReference = 74CEA98C2C9A9383000F94B4 /* iOS-training-TaichoneUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		74CEA9642C9A9382000F94B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					74CEA96B2C9A9382000F94B4 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					74CEA9812C9A9383000F94B4 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 74CEA96B2C9A9382000F94B4;
+					};
+					74CEA98B2C9A9383000F94B4 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 74CEA96B2C9A9382000F94B4;
+					};
+				};
+			};
+			buildConfigurationList = 74CEA9672C9A9382000F94B4 /* Build configuration list for PBXProject "iOS-training-Taichone" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 74CEA9632C9A9382000F94B4;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 74CEA96D2C9A9382000F94B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				74CEA96B2C9A9382000F94B4 /* iOS-training-Taichone */,
+				74CEA9812C9A9383000F94B4 /* iOS-training-TaichoneTests */,
+				74CEA98B2C9A9383000F94B4 /* iOS-training-TaichoneUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		74CEA96A2C9A9382000F94B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74CEA9802C9A9383000F94B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74CEA98A2C9A9383000F94B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		74CEA9682C9A9382000F94B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74CEA97E2C9A9383000F94B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74CEA9882C9A9383000F94B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		74CEA9842C9A9383000F94B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74CEA96B2C9A9382000F94B4 /* iOS-training-Taichone */;
+			targetProxy = 74CEA9832C9A9383000F94B4 /* PBXContainerItemProxy */;
+		};
+		74CEA98E2C9A9383000F94B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74CEA96B2C9A9382000F94B4 /* iOS-training-Taichone */;
+			targetProxy = 74CEA98D2C9A9383000F94B4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		74CEA9962C9A9383000F94B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS-training-Taichone/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Yumemi-Internship.iOS-training-Taichone";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		74CEA9972C9A9383000F94B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS-training-Taichone/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Yumemi-Internship.iOS-training-Taichone";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		74CEA9982C9A9383000F94B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		74CEA9992C9A9383000F94B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		74CEA99B2C9A9383000F94B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Yumemi-Internship.iOS-training-TaichoneTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS-training-Taichone.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iOS-training-Taichone";
+			};
+			name = Debug;
+		};
+		74CEA99C2C9A9383000F94B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Yumemi-Internship.iOS-training-TaichoneTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS-training-Taichone.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iOS-training-Taichone";
+			};
+			name = Release;
+		};
+		74CEA99E2C9A9383000F94B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Yumemi-Internship.iOS-training-TaichoneUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "iOS-training-Taichone";
+			};
+			name = Debug;
+		};
+		74CEA99F2C9A9383000F94B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Yumemi-Internship.iOS-training-TaichoneUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "iOS-training-Taichone";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		74CEA9672C9A9382000F94B4 /* Build configuration list for PBXProject "iOS-training-Taichone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74CEA9982C9A9383000F94B4 /* Debug */,
+				74CEA9992C9A9383000F94B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74CEA9952C9A9383000F94B4 /* Build configuration list for PBXNativeTarget "iOS-training-Taichone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74CEA9962C9A9383000F94B4 /* Debug */,
+				74CEA9972C9A9383000F94B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74CEA99A2C9A9383000F94B4 /* Build configuration list for PBXNativeTarget "iOS-training-TaichoneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74CEA99B2C9A9383000F94B4 /* Debug */,
+				74CEA99C2C9A9383000F94B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74CEA99D2C9A9383000F94B4 /* Build configuration list for PBXNativeTarget "iOS-training-TaichoneUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74CEA99E2C9A9383000F94B4 /* Debug */,
+				74CEA99F2C9A9383000F94B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 74CEA9642C9A9382000F94B4 /* Project object */;
+}
