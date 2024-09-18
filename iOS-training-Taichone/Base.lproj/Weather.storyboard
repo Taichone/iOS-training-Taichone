@@ -43,12 +43,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="TSl-Ha-VVP" firstAttribute="width" secondItem="YC4-P7-dJ8" secondAttribute="width" multiplier="0.5" id="1Zm-tq-aqa"/>
+                                            <constraint firstItem="UHs-0M-3iy" firstAttribute="width" secondItem="YC4-P7-dJ8" secondAttribute="width" multiplier="0.5" id="A4a-19-5bz"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="TSl-Ha-VVP" firstAttribute="width" secondItem="G6U-Hl-9eU" secondAttribute="width" multiplier="0.5" id="8pg-G6-X4D"/>
-                                    <constraint firstItem="UHs-0M-3iy" firstAttribute="width" secondItem="G6U-Hl-9eU" secondAttribute="width" multiplier="0.5" id="LbA-tc-5Uk"/>
-                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d36-Ng-hfo">
                                 <rect key="frame" x="98.333333333333329" y="627" width="196.33333333333337" height="34.333333333333371"/>
