@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		74CEA9BB2C9AA8FB000F94B4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 74CEA9BA2C9AA8FB000F94B4 /* .gitignore */; };
 		74CEA9BE2C9AA962000F94B4 /* YumemiWeather in Frameworks */ = {isa = PBXBuildFile; productRef = 74CEA9BD2C9AA962000F94B4 /* YumemiWeather */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,6 @@
 		74CEA96C2C9A9382000F94B4 /* iOS-training-Taichone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-training-Taichone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74CEA9822C9A9383000F94B4 /* iOS-training-TaichoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-training-TaichoneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74CEA98C2C9A9383000F94B4 /* iOS-training-TaichoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-training-TaichoneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		74CEA9BA2C9AA8FB000F94B4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -95,7 +93,6 @@
 		74CEA9632C9A9382000F94B4 = {
 			isa = PBXGroup;
 			children = (
-				74CEA9BA2C9AA8FB000F94B4 /* .gitignore */,
 				74CEA96E2C9A9382000F94B4 /* iOS-training-Taichone */,
 				74CEA9852C9A9383000F94B4 /* iOS-training-TaichoneTests */,
 				74CEA98F2C9A9383000F94B4 /* iOS-training-TaichoneUITests */,
@@ -237,7 +234,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74CEA9BB2C9AA8FB000F94B4 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
