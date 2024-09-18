@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		74CEA9BB2C9AA8FB000F94B4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 74CEA9BA2C9AA8FB000F94B4 /* .gitignore */; };
+		74CEA9BE2C9AA962000F94B4 /* YumemiWeather in Frameworks */ = {isa = PBXBuildFile; productRef = 74CEA9BD2C9AA962000F94B4 /* YumemiWeather */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74CEA9BE2C9AA962000F94B4 /* YumemiWeather in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +133,7 @@
 			);
 			name = "iOS-training-Taichone";
 			packageProductDependencies = (
+				74CEA9BD2C9AA962000F94B4 /* YumemiWeather */,
 			);
 			productName = "iOS-training-Taichone";
 			productReference = 74CEA96C2C9A9382000F94B4 /* iOS-training-Taichone.app */;
@@ -214,6 +217,9 @@
 			);
 			mainGroup = 74CEA9632C9A9382000F94B4;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				74CEA9BC2C9AA962000F94B4 /* XCRemoteSwiftPackageReference "ios-training" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 74CEA96D2C9A9382000F94B4 /* Products */;
 			projectDirPath = "";
@@ -570,6 +576,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		74CEA9BC2C9AA962000F94B4 /* XCRemoteSwiftPackageReference "ios-training" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yumemi-inc/ios-training.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		74CEA9BD2C9AA962000F94B4 /* YumemiWeather */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 74CEA9BC2C9AA962000F94B4 /* XCRemoteSwiftPackageReference "ios-training" */;
+			productName = YumemiWeather;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 74CEA9642C9A9382000F94B4 /* Project object */;
 }
