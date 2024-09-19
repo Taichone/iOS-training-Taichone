@@ -17,36 +17,10 @@ final class WeatherViewController: UIViewController {
     }
     
     @IBAction func onTapReloadButton(_ sender: Any) {
-        setWeatherImageS3()
+        setWeatherImage()
     }
     
     private func setWeatherImage() {
-        guard let weather = Weather(rawValue: YumemiWeather.fetchWeatherCondition()),
-              let image = UIImage(named: weather.imageName) else { return }
-        
-        weatherImageView.image = image.withRenderingMode(.alwaysTemplate)
-        weatherImageView.tintColor = weather.tintColor
-    }
-}
-
-private extension Weather {
-    var imageName: String {
-        rawValue
-    }
-    
-    var tintColor: UIColor {
-        switch self {
-        case .cloudy:
-                .gray
-        case .rainy:
-                .blue
-        case .sunny:
-                .red
-        }
-    }
-    
-    // TODO: rename（今は S2 の変更を rebase した際の conflict 対策）
-    private func setWeatherImageS3() {
         do {
             if let weather = try Weather(rawValue: YumemiWeather.fetchWeatherCondition(at: "")),
                let image = UIImage(named: weather.imageName) {
@@ -76,11 +50,28 @@ private extension Weather {
         let alertController = UIAlertController(title: "天気の取得に失敗", message: alertMessage, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in }
         let retryAction = UIAlertAction(title: "再取得", style: .default) { _ in
-            self.setWeatherImageS3()
+            self.setWeatherImage()
         }
         
         alertController.addAction(cancelAction)
         alertController.addAction(retryAction)
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+private extension Weather {
+    var imageName: String {
+        rawValue
+    }
+    
+    var tintColor: UIColor {
+        switch self {
+        case .cloudy:
+                .gray
+        case .rainy:
+                .blue
+        case .sunny:
+                .red
+        }
     }
 }
