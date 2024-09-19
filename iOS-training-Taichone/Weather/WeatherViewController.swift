@@ -64,7 +64,7 @@ final class WeatherViewController: UIViewController {
     }
 }
 
-private extension Weather {
+private extension WeatherCondition {
     var imageName: String {
         rawValue
     }
