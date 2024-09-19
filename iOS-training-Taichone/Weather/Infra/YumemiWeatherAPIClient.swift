@@ -9,10 +9,10 @@ import YumemiWeather
 import Foundation
 
 // TODO: ViewConrtoller が YumemiWeather に依存しないよう設計
+// - ここで YumemiWeatherError はハンドリングし、新しいエラーを定義して投げる
 
 final class YumemiWeatherAPIClient {
     static func getWeatherForecast() throws -> WeatherForecast {
-        // Request
         let request = Request(
             area: Area.tokyo.rawValue, // NOTE: 現時点では指定されていないためハードコード
             date: Date()
@@ -21,13 +21,11 @@ final class YumemiWeatherAPIClient {
         encoder.dateEncodingStrategy = .iso8601
         let requestData = try encoder.encode(request)
         guard let requestJSON = String(data: requestData, encoding: .utf8) else {
-            throw YumemiWeatherError.invalidParameterError
+            throw YumemiWeatherError.invalidParameterError // TODO: - 定義した error にする
         }
         
-        // Get
         let responseJSON = try YumemiWeather.fetchWeather(requestJSON)
         
-        // Response
         let responseData = Data(responseJSON.utf8)
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
@@ -58,7 +56,7 @@ extension YumemiWeatherAPIClient {
         
         func convertToWeatherForecast() throws -> WeatherForecast {
             guard let weather = WeatherCondition(rawValue: weatherCondition) else {
-                throw YumemiWeatherError.invalidParameterError
+                throw YumemiWeatherError.invalidParameterError // TODO: - 定義した error にする
             }
             
             return .init(
