@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -14,30 +14,30 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOS_training_Taichone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o6U-r1-SSX">
-                                <rect key="frame" x="98.333333333333329" y="330" width="196.33333333333337" height="217"/>
+                                <rect key="frame" x="100.66666666666669" y="326.33333333333331" width="201" height="221.33333333333331"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="G6U-Hl-9eU">
-                                        <rect key="frame" x="0.0" y="0.0" width="196.33333333333334" height="196.66666666666666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="201" height="201"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="G6U-Hl-9eU" secondAttribute="height" multiplier="1:1" id="g7b-w9-qCk"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YC4-P7-dJ8">
-                                        <rect key="frame" x="0.0" y="196.66666666666663" width="196.33333333333334" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="201.00000000000006" width="201" height="20.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSl-Ha-VVP">
-                                                <rect key="frame" x="0.0" y="0.0" width="98.333333333333329" height="20.333333333333332"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="Blue"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHs-0M-3iy">
-                                                <rect key="frame" x="98.333333333333314" y="0.0" width="98" height="20.333333333333332"/>
+                                                <rect key="frame" x="100.33333333333331" y="0.0" width="100.66666666666669" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="Red"/>
                                                 <nil key="highlightedColor"/>
@@ -51,15 +51,15 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d36-Ng-hfo">
-                                <rect key="frame" x="98.333333333333329" y="627" width="196.33333333333337" height="34.333333333333371"/>
+                                <rect key="frame" x="100.66666666666669" y="627.66666666666663" width="201" height="34.333333333333371"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-bP-qPk">
-                                        <rect key="frame" x="0.0" y="0.0" width="98.333333333333329" height="34.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Close"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3a-3g-hfX">
-                                        <rect key="frame" x="98.333333333333314" y="0.0" width="98" height="34.333333333333336"/>
+                                        <rect key="frame" x="100.33333333333331" y="0.0" width="100.66666666666669" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Reload"/>
                                     </button>
@@ -74,7 +74,7 @@
                             <constraint firstItem="d36-Ng-hfo" firstAttribute="top" secondItem="o6U-r1-SSX" secondAttribute="bottom" constant="80" id="M3G-ah-gJk"/>
                             <constraint firstItem="o6U-r1-SSX" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="bMn-he-SmW"/>
                             <constraint firstItem="o6U-r1-SSX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eu6-aU-DYh"/>
-                            <constraint firstItem="o6U-r1-SSX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="12.5" id="qtB-F1-V3d"/>
+                            <constraint firstItem="o6U-r1-SSX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qtB-F1-V3d"/>
                         </constraints>
                     </view>
                 </viewController>
