@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import YumemiWeather
 
 final class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherConditionImageView: UIImageView!
@@ -21,7 +20,9 @@ final class WeatherViewController: UIViewController {
     @IBAction func onTapReloadButton(_ sender: Any) {
         fetchWeatherForecast()
     }
-    
+}
+
+extension WeatherViewController {
     private func fetchWeatherForecast() {
         do {
             let weatherForecast = try YumemiWeatherAPIClient.getWeatherForecast()

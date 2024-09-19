@@ -8,7 +8,6 @@
 import YumemiWeather
 import Foundation
 
-// TODO: ViewConrtoller が YumemiWeather に依存しないよう設計
 final class YumemiWeatherAPIClient {
     static func getWeatherForecast() throws -> WeatherForecast {
         let request = Request(
@@ -78,11 +77,4 @@ extension YumemiWeatherAPIClient {
             )
         }
     }
-}
-
-enum YumemiWeatherAPIError: Error {
-    case apiUnknownError
-    case apiInvalidParameterError
-    case invalidRequestError
-    case invalidResponseError
 }
