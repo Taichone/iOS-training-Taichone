@@ -16,20 +16,15 @@ final class WeatherViewController: UIViewController {
         setWeatherImage()
     }
     
-    func setWeatherImage() {
-        let weathertypeName = YumemiWeather.fetchWeatherCondition()
-        // TODO: ここで Weather に直せば、weatherImage() はいらない
-        
-        if let image = weatherImage(typeName: weathertypeName) {
-            weatherImageView.image = image.withRenderingMode(.alwaysTemplate)
-            weatherImageView.tintColor = .red
-        }
+    @IBAction func onTapReloadButton(_ sender: Any) {
+        setWeatherImage()
     }
     
-    private func weatherImage(typeName: String) -> UIImage? {
-        switch typeName {
-        case "sunny", "cloudy", "rainy": UIImage(named: typeName)
-        default: nil
+    private func setWeatherImage() {
+        if let weather = Weather(rawValue: YumemiWeather.fetchWeatherCondition()),
+           let image = UIImage(named: weather.imageName) {
+            weatherImageView.image = image.withRenderingMode(.alwaysTemplate)
+            weatherImageView.tintColor = weather.tintColor
         }
     }
 }

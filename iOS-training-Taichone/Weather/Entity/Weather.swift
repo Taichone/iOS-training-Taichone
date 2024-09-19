@@ -15,6 +15,12 @@ enum Weather: String {
 }
 
 extension Weather {
+    var imageName: String {
+        switch self {
+        case .cloudy, .rainy, .sunny: rawValue
+        }
+    }
+    
     var tintColor: UIColor {
         switch self {
         case .cloudy: .gray
