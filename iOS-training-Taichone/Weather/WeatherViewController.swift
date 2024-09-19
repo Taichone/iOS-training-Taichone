@@ -54,16 +54,33 @@ private extension Weather {
                 weatherImageView.tintColor = weather.tintColor
             }
         } catch {
-            if let yumemiWeatherError = error as? YumemiWeatherError {
-                switch yumemiWeatherError {
-                case .invalidParameterError:
-                    print("")
-                case .unknownError:
-                    print("")
-                }
-            } else {
-                print("")
-            }
+            let alertMessage = weatherErrorAlertMessage(from: error)
+            showWeatherErrorAlert(alertMessage: alertMessage)
         }
+    }
+    
+    private func weatherErrorAlertMessage(from error: Error) -> String {
+        if let yumemiWeatherError = error as? YumemiWeatherError {
+            switch yumemiWeatherError {
+            case .invalidParameterError:
+                "内部で無効なパラメータが渡されてエラーが発生し、天気を取得できませんでした。"
+            case .unknownError:
+                "不明なエラーが発生し、天気を取得できませんでした。"
+            }
+        } else {
+            "不明なエラーが発生し、天気を取得できませんでした。"
+        }
+    }
+    
+    private func showWeatherErrorAlert(alertMessage: String) {
+        let alertController = UIAlertController(title: "天気の取得に失敗", message: alertMessage, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in }
+        let retryAction = UIAlertAction(title: "再取得", style: .default) { _ in
+            self.setWeatherImageS3()
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(retryAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
