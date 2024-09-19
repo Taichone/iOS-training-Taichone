@@ -39,15 +39,15 @@ final class WeatherViewController: UIViewController {
     }
     
     private func weatherErrorAlertMessage(from error: Error) -> String {
-        if let yumemiWeatherError = error as? YumemiWeatherError {
-            switch yumemiWeatherError {
-            case .invalidParameterError:
-                "内部で無効なパラメータが渡されてエラーが発生し、天気を取得できませんでした。"
-            case .unknownError:
-                "不明なエラーが発生し、天気を取得できませんでした。"
-            }
-        } else {
-            "不明なエラーが発生し、天気を取得できませんでした。"
+        let yumemiWeatherAPIError = error as? YumemiWeatherAPIError
+        
+        switch yumemiWeatherAPIError {
+        case .apiInvalidParameterError, .invalidRequestError:
+            return "要求にエラーが発生し、天気予報を取得できませんでした。"
+        case .invalidResponseError:
+            return "応答にエラーが発生し、天気予報を取得できませんでした。"
+        case .apiUnknownError, nil:
+            return "不明なエラーが発生し、天気予報を取得できませんでした。"
         }
     }
     
