@@ -80,6 +80,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="maxTemperatureLabel" destination="UHs-0M-3iy" id="sWM-kd-zYQ"/>
+                        <outlet property="minTemperatureLabel" destination="TSl-Ha-VVP" id="maq-md-WT1"/>
                         <outlet property="weatherConditionImageView" destination="G6U-Hl-9eU" id="gEo-tY-AZf"/>
                     </connections>
                 </viewController>

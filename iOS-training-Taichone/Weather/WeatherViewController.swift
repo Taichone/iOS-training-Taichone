@@ -10,6 +10,8 @@ import YumemiWeather
 
 final class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherConditionImageView: UIImageView!
+    @IBOutlet weak var minTemperatureLabel: UILabel!
+    @IBOutlet weak var maxTemperatureLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,8 @@ final class WeatherViewController: UIViewController {
         do {
             let weatherForecast = try YumemiWeatherAPIClient.getWeatherForecast()
             setWeatherConditionImage(weatherCondition: weatherForecast.weatherCondition)
-            // TODO: 最高気温と最低気温の UILabel 繋ぎ込み
+            minTemperatureLabel.text = String(weatherForecast.minTemperature)
+            maxTemperatureLabel.text = String(weatherForecast.maxTemperature)
         } catch {
             let alertMessage = weatherErrorAlertMessage(from: error)
             showWeatherErrorAlert(alertMessage: alertMessage)
