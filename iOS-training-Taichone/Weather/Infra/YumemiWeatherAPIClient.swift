@@ -9,8 +9,6 @@ import YumemiWeather
 import Foundation
 
 // TODO: ViewConrtoller が YumemiWeather に依存しないよう設計
-// - ここで YumemiWeatherError はハンドリングし、新しいエラーを定義して投げる
-
 final class YumemiWeatherAPIClient {
     static func getWeatherForecast() throws -> WeatherForecast {
         let request = Request(
@@ -19,19 +17,32 @@ final class YumemiWeatherAPIClient {
         )
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
-        let requestData = try encoder.encode(request)
-        guard let requestJSON = String(data: requestData, encoding: .utf8) else {
-            throw YumemiWeatherError.invalidParameterError // TODO: - 定義した error にする
+        
+        guard let requestData = try? encoder.encode(request),
+              let requestJSON = String(data: requestData, encoding: .utf8) else {
+            throw YumemiWeatherAPIError.invalidRequestError
         }
         
-        let responseJSON = try YumemiWeather.fetchWeather(requestJSON)
-        
-        let responseData = Data(responseJSON.utf8)
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        let response = try decoder.decode(Response.self, from: responseData)
-        
-        return try response.convertToWeatherForecast()
+        do {
+            let responseJSON = try YumemiWeather.fetchWeather(requestJSON)
+            let responseData = Data(responseJSON.utf8)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let response = try decoder.decode(Response.self, from: responseData)
+            
+            return try response.convertToWeatherForecast()
+        } catch {
+            if let yumemiWeatherError = error as? YumemiWeatherError {
+                switch yumemiWeatherError {
+                case .invalidParameterError:
+                    throw YumemiWeatherAPIError.apiInvalidParameterError
+                case .unknownError:
+                    throw YumemiWeatherAPIError.apiUnknownError
+                }
+            } else {
+                throw YumemiWeatherAPIError.invalidResponseError
+            }
+        }
     }
 }
 
@@ -56,7 +67,7 @@ extension YumemiWeatherAPIClient {
         
         func convertToWeatherForecast() throws -> WeatherForecast {
             guard let weather = WeatherCondition(rawValue: weatherCondition) else {
-                throw YumemiWeatherError.invalidParameterError // TODO: - 定義した error にする
+                throw YumemiWeatherAPIError.invalidResponseError
             }
             
             return .init(
@@ -67,4 +78,11 @@ extension YumemiWeatherAPIClient {
             )
         }
     }
+}
+
+enum YumemiWeatherAPIError: Error {
+    case apiUnknownError
+    case apiInvalidParameterError
+    case invalidRequestError
+    case invalidResponseError
 }
