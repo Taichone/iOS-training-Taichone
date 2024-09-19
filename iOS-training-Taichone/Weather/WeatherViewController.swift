@@ -21,10 +21,27 @@ final class WeatherViewController: UIViewController {
     }
     
     private func setWeatherImage() {
-        if let weather = Weather(rawValue: YumemiWeather.fetchWeatherCondition()),
-           let image = UIImage(named: weather.imageName) {
-            weatherImageView.image = image.withRenderingMode(.alwaysTemplate)
-            weatherImageView.tintColor = weather.tintColor
+        guard let weather = Weather(rawValue: YumemiWeather.fetchWeatherCondition()),
+              let image = UIImage(named: weather.imageName) else { return }
+        
+        weatherImageView.image = image.withRenderingMode(.alwaysTemplate)
+        weatherImageView.tintColor = weather.tintColor
+    }
+}
+
+private extension Weather {
+    var imageName: String {
+        rawValue
+    }
+    
+    var tintColor: UIColor {
+        switch self {
+        case .cloudy:
+                .gray
+        case .rainy:
+                .blue
+        case .sunny:
+                .red
         }
     }
 }
