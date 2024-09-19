@@ -51,7 +51,7 @@ extension YumemiWeatherAPIClient {
         let date: Date
     }
     
-    private struct Response: Codable, Equatable {
+    private struct Response: Codable {
         let weatherCondition: String
         let maxTemperature: Int
         let minTemperature: Int
