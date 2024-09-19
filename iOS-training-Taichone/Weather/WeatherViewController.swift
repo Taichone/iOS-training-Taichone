@@ -13,16 +13,21 @@ final class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setWeatherImage()
+        fetchWeatherForecast()
     }
     
     @IBAction func onTapReloadButton(_ sender: Any) {
-        setWeatherImage()
+        fetchWeatherForecast()
+    }
+    
+    private func fetchWeatherForecast() {
+        let weatherForecast = try? YumemiWeatherAPIClient.getWeatherForecast()
+        print(weatherForecast ?? "nil")
     }
     
     private func setWeatherImage() {
         do {
-            if let weather = try Weather(rawValue: YumemiWeather.fetchWeatherCondition(at: "")),
+            if let weather = try WeatherCondition(rawValue: YumemiWeather.fetchWeatherCondition(at: "")),
                let image = UIImage(named: weather.imageName) {
                 weatherImageView.image = image.withRenderingMode(.alwaysTemplate)
                 weatherImageView.tintColor = weather.tintColor
