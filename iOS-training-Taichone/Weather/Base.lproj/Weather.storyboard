@@ -80,7 +80,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="weatherImageView" destination="G6U-Hl-9eU" id="NzP-XM-11t"/>
+                        <outlet property="weatherConditionImageView" destination="G6U-Hl-9eU" id="gEo-tY-AZf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

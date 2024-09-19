@@ -8,7 +8,7 @@
 import Foundation
 
 struct WeatherForecast {
-    let weather: WeatherCondition
+    let weatherCondition: WeatherCondition
     let maxTemperature: Int
     let minTemperature: Int
     let date: Date

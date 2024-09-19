@@ -9,7 +9,7 @@ import UIKit
 import YumemiWeather
 
 final class WeatherViewController: UIViewController {
-    @IBOutlet weak var weatherImageView: UIImageView!
+    @IBOutlet weak var weatherConditionImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,21 +21,20 @@ final class WeatherViewController: UIViewController {
     }
     
     private func fetchWeatherForecast() {
-        let weatherForecast = try? YumemiWeatherAPIClient.getWeatherForecast()
-        print(weatherForecast ?? "nil")
-    }
-    
-    private func setWeatherImage() {
         do {
-            if let weather = try WeatherCondition(rawValue: YumemiWeather.fetchWeatherCondition(at: "")),
-               let image = UIImage(named: weather.imageName) {
-                weatherImageView.image = image.withRenderingMode(.alwaysTemplate)
-                weatherImageView.tintColor = weather.tintColor
-            }
+            let weatherForecast = try YumemiWeatherAPIClient.getWeatherForecast()
+            setWeatherConditionImage(weatherCondition: weatherForecast.weatherCondition)
+            // TODO: 最高気温と最低気温の UILabel 繋ぎ込み
         } catch {
             let alertMessage = weatherErrorAlertMessage(from: error)
             showWeatherErrorAlert(alertMessage: alertMessage)
         }
+    }
+    
+    private func setWeatherConditionImage(weatherCondition: WeatherCondition) {
+        guard let image = UIImage(named: weatherCondition.imageName) else { return }
+        weatherConditionImageView.image = image.withRenderingMode(.alwaysTemplate)
+        weatherConditionImageView.tintColor = weatherCondition.tintColor
     }
     
     private func weatherErrorAlertMessage(from error: Error) -> String {
@@ -55,7 +54,7 @@ final class WeatherViewController: UIViewController {
         let alertController = UIAlertController(title: "天気の取得に失敗", message: alertMessage, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in }
         let retryAction = UIAlertAction(title: "再取得", style: .default) { _ in
-            self.setWeatherImage()
+            self.fetchWeatherForecast()
         }
         
         alertController.addAction(cancelAction)

@@ -66,12 +66,12 @@ extension YumemiWeatherAPIClient {
         }
         
         func convertToWeatherForecast() throws -> WeatherForecast {
-            guard let weather = WeatherCondition(rawValue: weatherCondition) else {
+            guard let weatherCondition = WeatherCondition(rawValue: weatherCondition) else {
                 throw YumemiWeatherAPIError.invalidResponseError
             }
             
             return .init(
-                weather: weather,
+                weatherCondition: weatherCondition,
                 maxTemperature: maxTemperature,
                 minTemperature: minTemperature,
                 date: date
