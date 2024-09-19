@@ -17,7 +17,7 @@ final class WeatherViewController: UIViewController {
     }
     
     @IBAction func onTapReloadButton(_ sender: Any) {
-        setWeatherImage()
+        setWeatherImageS3()
     }
     
     private func setWeatherImage() {
@@ -42,6 +42,28 @@ private extension Weather {
                 .blue
         case .sunny:
                 .red
+        }
+    }
+    
+    // TODO: rename（今は S2 の変更を rebase した際の conflict 対策）
+    private func setWeatherImageS3() {
+        do {
+            if let weather = try Weather(rawValue: YumemiWeather.fetchWeatherCondition(at: "")),
+               let image = UIImage(named: weather.imageName) {
+                weatherImageView.image = image.withRenderingMode(.alwaysTemplate)
+                weatherImageView.tintColor = weather.tintColor
+            }
+        } catch {
+            if let yumemiWeatherError = error as? YumemiWeatherError {
+                switch yumemiWeatherError {
+                case .invalidParameterError:
+                    print("")
+                case .unknownError:
+                    print("")
+                }
+            } else {
+                print("")
+            }
         }
     }
 }
