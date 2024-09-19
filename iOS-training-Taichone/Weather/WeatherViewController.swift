@@ -18,6 +18,8 @@ final class WeatherViewController: UIViewController {
     
     func setWeatherImage() {
         let weathertypeName = YumemiWeather.fetchWeatherCondition()
+        // TODO: ここで Weather に直せば、weatherImage() はいらない
+        
         if let image = weatherImage(typeName: weathertypeName) {
             weatherImageView.image = image.withRenderingMode(.alwaysTemplate)
             weatherImageView.tintColor = .red
