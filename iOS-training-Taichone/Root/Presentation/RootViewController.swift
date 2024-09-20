@@ -32,7 +32,17 @@ final class RootViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         print("viewDidAppear")
-        // TODO: WeatherViewContorller を表示
+        
+        let storyboard = UIStoryboard(name: "Weather", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(
+            withIdentifier: "WeatherViewController"
+        ) as? WeatherViewController else {
+            fatalError("WeatherViewController could not be instantiated from Storyboard")
+        }
+
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true)
     }
 
     override func viewWillDisappear(_ animated: Bool) {

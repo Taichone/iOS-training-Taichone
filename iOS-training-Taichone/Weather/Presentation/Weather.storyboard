@@ -12,7 +12,7 @@
         <!--Weather View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WeatherViewController" customModule="iOS_training_Taichone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WeatherViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="WeatherViewController" customModule="iOS_training_Taichone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,14 +80,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="maxTemperatureLabel" destination="UHs-0M-3iy" id="sWM-kd-zYQ"/>
-                        <outlet property="minTemperatureLabel" destination="TSl-Ha-VVP" id="maq-md-WT1"/>
-                        <outlet property="weatherConditionImageView" destination="G6U-Hl-9eU" id="gEo-tY-AZf"/>
+                        <outlet property="maxTemperatureLabel" destination="UHs-0M-3iy" id="PCf-lX-qPl"/>
+                        <outlet property="minTemperatureLabel" destination="TSl-Ha-VVP" id="v4x-Th-u5o"/>
+                        <outlet property="weatherConditionImageView" destination="G6U-Hl-9eU" id="dJV-TN-en2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="300" y="-45"/>
         </scene>
     </scenes>
     <resources>
