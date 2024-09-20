@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Area: String, CaseIterable, Codable {
+enum Area: String {
     case sapporo = "Sapporo"
     case sendai = "Sendai"
     case niigata = "Niigata"
