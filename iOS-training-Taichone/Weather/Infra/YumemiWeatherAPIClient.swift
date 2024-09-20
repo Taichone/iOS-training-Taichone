@@ -10,7 +10,7 @@ import Foundation
 
 final class YumemiWeatherAPIClient {
     static func getWeatherForecast() throws -> WeatherForecast {
-        let request = Request(
+        let request = GetWeatherForecastRequest(
             area: Area.tokyo.rawValue, // NOTE: 現時点では指定されていないためハードコード
             date: Date()
         )
@@ -27,7 +27,7 @@ final class YumemiWeatherAPIClient {
             let responseData = Data(responseJSON.utf8)
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-            let response = try decoder.decode(Response.self, from: responseData)
+            let response = try decoder.decode(GetWeatherForecastResponse.self, from: responseData)
             
             return try response.convertToWeatherForecast()
         } catch {
@@ -46,12 +46,12 @@ final class YumemiWeatherAPIClient {
 }
 
 extension YumemiWeatherAPIClient {
-    private struct Request: Encodable {
+    private struct GetWeatherForecastRequest: Encodable {
         let area: String
         let date: Date
     }
     
-    private struct Response: Decodable {
+    private struct GetWeatherForecastResponse: Decodable {
         let weatherCondition: String
         let maxTemperature: Int
         let minTemperature: Int
