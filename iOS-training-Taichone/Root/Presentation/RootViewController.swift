@@ -17,12 +17,12 @@ final class RootViewController: UIViewController {
         super.viewDidAppear(true)
         
         let storyboard = UIStoryboard(name: "Weather", bundle: nil)
-        guard let viewController = storyboard.instantiateViewController(
-            withIdentifier: "WeatherViewController"
-        ) as? WeatherViewController else {
+        guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
+            WeatherViewController(coder: coder, weatherForecastProvider: YumemiWeatherAPIClient.shared)
+        }) else {
             fatalError("WeatherViewController could not be instantiated from Storyboard")
         }
-
+        
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: true)

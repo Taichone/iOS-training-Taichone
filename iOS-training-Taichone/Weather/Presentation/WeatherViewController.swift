@@ -11,7 +11,16 @@ final class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherConditionImageView: UIImageView!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
-    var weatherForecastProvider: WeatherForecastProvider = YumemiWeatherAPIClient.shared
+    private let weatherForecastProvider: WeatherForecastProvider
+    
+    init?(coder: NSCoder, weatherForecastProvider: WeatherForecastProvider) {
+        self.weatherForecastProvider = weatherForecastProvider
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

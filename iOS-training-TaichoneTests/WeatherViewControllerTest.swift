@@ -15,8 +15,9 @@ final class WeatherViewControllerTest: XCTestCase {
     
     override func setUpWithError() throws {
         let storyboard = UIStoryboard(name: "Weather", bundle: nil)
-        vc = storyboard.instantiateViewController(withIdentifier: "WeatherViewController") as? WeatherViewController
-        vc.weatherForecastProvider = weatherForecastProvider // DI
+        let vc = storyboard.instantiateInitialViewController(creator: { coder in
+            WeatherViewController(coder: coder, weatherForecastProvider: self.weatherForecastProvider)
+        })!
         vc.loadViewIfNeeded()
     }
 
@@ -31,7 +32,6 @@ final class WeatherViewControllerTest: XCTestCase {
             XCTFail("ImageView または Assets の　UIImage が取り出せない")
             return
         }
-        
         XCTAssertEqual(imageViewImage, sunnyImage)
         XCTAssertEqual(vc.weatherConditionImageView.tintColor, UIColor.red)
     }
