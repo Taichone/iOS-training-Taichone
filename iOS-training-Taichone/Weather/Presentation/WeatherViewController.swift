@@ -14,15 +14,30 @@ final class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleDidEnterForeground),
+            name: .didEnterForeground,
+            object: nil
+        )
+        
         fetchWeatherForecast()
     }
     
-    @IBAction func onTapReloadButton(_ sender: Any) {
+    @IBAction private func onTapReloadButton(_ sender: Any) {
         fetchWeatherForecast()
     }
     
-    @IBAction func onTapCloseButton(_ sender: Any) {
+    @IBAction private func onTapCloseButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+
+    @objc private func handleDidEnterForeground() {
+        fetchWeatherForecast()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .didEnterForeground, object: nil)
     }
 }
 
