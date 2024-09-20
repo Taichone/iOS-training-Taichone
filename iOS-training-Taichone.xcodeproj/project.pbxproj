@@ -57,11 +57,6 @@
 			path = "iOS-training-TaichoneTests";
 			sourceTree = "<group>";
 		};
-		74CEA98F2C9A9383000F94B4 /* iOS-training-TaichoneUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "iOS-training-TaichoneUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +90,6 @@
 			children = (
 				74CEA96E2C9A9382000F94B4 /* iOS-training-Taichone */,
 				74CEA9852C9A9383000F94B4 /* iOS-training-TaichoneTests */,
-				74CEA98F2C9A9383000F94B4 /* iOS-training-TaichoneUITests */,
 				74CEA96D2C9A9382000F94B4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -171,9 +165,6 @@
 			);
 			dependencies = (
 				74CEA98E2C9A9383000F94B4 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				74CEA98F2C9A9383000F94B4 /* iOS-training-TaichoneUITests */,
 			);
 			name = "iOS-training-TaichoneUITests";
 			packageProductDependencies = (
