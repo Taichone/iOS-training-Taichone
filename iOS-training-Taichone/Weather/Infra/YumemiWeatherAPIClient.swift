@@ -9,7 +9,12 @@ import YumemiWeather
 import Foundation
 
 final class YumemiWeatherAPIClient {
-    static func getWeatherForecast() throws -> WeatherForecast {
+    static let shared = YumemiWeatherAPIClient()
+    private init() {}
+}
+
+extension YumemiWeatherAPIClient: WeatherForecastProvider {
+    func getWeatherForecast() throws -> WeatherForecast {
         let request = GetWeatherForecastRequest(
             area: Area.tokyo.rawValue, // NOTE: 現時点では指定されていないためハードコード
             date: Date()
@@ -44,9 +49,7 @@ final class YumemiWeatherAPIClient {
             }
         }
     }
-}
-
-extension YumemiWeatherAPIClient {
+    
     private struct GetWeatherForecastRequest: Encodable {
         let area: String
         let date: Date
