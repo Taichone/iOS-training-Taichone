@@ -35,10 +35,6 @@ final class WeatherViewController: UIViewController {
     @objc private func handleDidEnterForeground() {
         fetchWeatherForecast()
     }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .didEnterForeground, object: nil)
-    }
 }
 
 extension WeatherViewController {
