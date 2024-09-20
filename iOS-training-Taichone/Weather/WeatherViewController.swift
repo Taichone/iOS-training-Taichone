@@ -55,7 +55,7 @@ extension WeatherViewController {
     }
     
     private func showWeatherErrorAlert(alertMessage: String) {
-        let alertController = UIAlertController(title: "天気の取得に失敗", message: alertMessage, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "天気予報の取得に失敗", message: alertMessage, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in }
         let retryAction = UIAlertAction(title: "再取得", style: .default) { _ in
             self.fetchWeatherForecast()
