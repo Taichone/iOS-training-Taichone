@@ -66,6 +66,44 @@ final class WeatherViewControllerTest: XCTestCase {
         XCTAssertEqual(imageViewImage, rainyImage)
         XCTAssertEqual(vc.weatherConditionImageView.tintColor, UIColor.blue)
     }
+    
+    @MainActor
+    func test_天気予報の最高気温がUILabelに反映されること() {
+        let maxTemperature = 100
+        weatherForecastProvider.setWeatherForecast(.init(
+            weatherCondition: .cloudy,
+            maxTemperature: maxTemperature,
+            minTemperature: 0,
+            date: Date()
+        ))
+        
+        vc.fetchWeatherForecast() // Act
+
+        guard let labelTextValue = Int(vc.maxTemperatureLabel.text ?? "") else {
+            XCTFail("maxTemperatureLabel.text が nil または Int に変換できない")
+            return
+        }
+        XCTAssertEqual(labelTextValue, maxTemperature)
+    }
+    
+    @MainActor
+    func test_天気予報の最低気温がUILabelに反映されること() {
+        let minTemperature = -100
+        weatherForecastProvider.setWeatherForecast(.init(
+            weatherCondition: .cloudy,
+            maxTemperature: 0,
+            minTemperature: minTemperature,
+            date: Date()
+        ))
+        
+        vc.fetchWeatherForecast() // Act
+
+        guard let labelTextValue = Int(vc.minTemperatureLabel.text ?? "") else {
+            XCTFail("minTemperatureLabel.text が nil または Int に変換できない")
+            return
+        }
+        XCTAssertEqual(labelTextValue, minTemperature)
+    }
 }
 
 extension WeatherViewControllerTest {
