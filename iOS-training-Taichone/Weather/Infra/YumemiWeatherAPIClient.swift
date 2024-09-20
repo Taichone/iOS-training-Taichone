@@ -26,6 +26,7 @@ final class YumemiWeatherAPIClient {
             let responseJSON = try YumemiWeather.fetchWeather(requestJSON)
             let responseData = Data(responseJSON.utf8)
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
             decoder.dateDecodingStrategy = .iso8601
             let response = try decoder.decode(GetWeatherForecastResponse.self, from: responseData)
             
@@ -56,13 +57,6 @@ extension YumemiWeatherAPIClient {
         let maxTemperature: Int
         let minTemperature: Int
         let date: Date
-        
-        private enum CodingKeys: String, CodingKey {
-            case weatherCondition = "weather_condition"
-            case maxTemperature = "max_temperature"
-            case minTemperature = "min_temperature"
-            case date
-        }
         
         func convertToWeatherForecast() throws -> WeatherForecast {
             guard let weatherCondition = WeatherCondition(rawValue: weatherCondition) else {
