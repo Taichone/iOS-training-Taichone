@@ -20,14 +20,12 @@ final class WeatherViewControllerTest: XCTestCase {
         
         vc.loadViewIfNeeded()
     }
-    
+
     @MainActor
     func test_天気予報がsunnyなら画面に晴れ画像が表示されること() async throws {
         weatherForecastProvider.setWeatherCondition(.sunny)
-        vc.fetchWeatherForecast()
-        await Task.yield()
-
-        XCTAssertEqual(vc.weatherConditionImageView.tintColor, UIColor.red)
+        
+        vc.fetchWeatherForecast() // Act
         
         guard let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
               let sunnyImage = UIImage(named: "sunny")?.pngData() else {
@@ -36,6 +34,37 @@ final class WeatherViewControllerTest: XCTestCase {
         }
         
         XCTAssertEqual(imageViewImage, sunnyImage)
+        XCTAssertEqual(vc.weatherConditionImageView.tintColor, UIColor.red)
+    }
+    
+    @MainActor
+    func test_天気予報がcloudyなら画面に曇り画像が表示されること() async throws {
+        weatherForecastProvider.setWeatherCondition(.cloudy)
+        
+        vc.fetchWeatherForecast() // Act
+
+        guard let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
+              let cloudyImage = UIImage(named: "cloudy")?.pngData() else {
+            XCTFail("ImageView または Assets の　UIImage が取り出せない")
+            return
+        }
+        XCTAssertEqual(imageViewImage, cloudyImage)
+        XCTAssertEqual(vc.weatherConditionImageView.tintColor, UIColor.gray)
+    }
+    
+    @MainActor
+    func test_天気予報がrainyなら画面に雨画像が表示されること() async throws {
+        weatherForecastProvider.setWeatherCondition(.rainy)
+        
+        vc.fetchWeatherForecast() // Act
+
+        guard let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
+              let rainyImage = UIImage(named: "rainy")?.pngData() else {
+            XCTFail("ImageView または Assets の　UIImage が取り出せない")
+            return
+        }
+        XCTAssertEqual(imageViewImage, rainyImage)
+        XCTAssertEqual(vc.weatherConditionImageView.tintColor, UIColor.blue)
     }
 }
 
