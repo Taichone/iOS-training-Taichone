@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
@@ -12,7 +12,7 @@
         <!--Weather View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WeatherViewController" customModule="iOS_training_Taichone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WeatherViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="WeatherViewController" customModule="iOS_training_Taichone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,6 +56,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Close"/>
+                                        <connections>
+                                            <action selector="onTapCloseButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XPr-yq-faT"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3a-3g-hfX">
                                         <rect key="frame" x="100.33333333333331" y="0.0" width="100.66666666666669" height="34.333333333333336"/>
@@ -80,14 +83,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="maxTemperatureLabel" destination="UHs-0M-3iy" id="sWM-kd-zYQ"/>
-                        <outlet property="minTemperatureLabel" destination="TSl-Ha-VVP" id="maq-md-WT1"/>
-                        <outlet property="weatherConditionImageView" destination="G6U-Hl-9eU" id="gEo-tY-AZf"/>
+                        <outlet property="maxTemperatureLabel" destination="UHs-0M-3iy" id="PCf-lX-qPl"/>
+                        <outlet property="minTemperatureLabel" destination="TSl-Ha-VVP" id="v4x-Th-u5o"/>
+                        <outlet property="weatherConditionImageView" destination="G6U-Hl-9eU" id="dJV-TN-en2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="300" y="-45"/>
         </scene>
     </scenes>
     <resources>
