@@ -46,16 +46,8 @@ extension WeatherViewController {
         do {
             let weatherForecast = try YumemiWeatherAPIClient.getWeatherForecast()
             setWeatherConditionImage(weatherCondition: weatherForecast.weatherCondition)
-            if let minTemperatureLabel = minTemperatureLabel {
-                minTemperatureLabel.text = String(weatherForecast.minTemperature)
-            } else {
-                print("minTempratureLabel が nil")
-            }
-            if let maxTemperatureLabel = maxTemperatureLabel {
-                maxTemperatureLabel.text = String(weatherForecast.maxTemperature)
-            } else {
-                print("maxTempratureLabel が nil")
-            }
+            minTemperatureLabel.text = String(weatherForecast.minTemperature)
+            maxTemperatureLabel.text = String(weatherForecast.maxTemperature)
         } catch {
             let alertMessage = weatherErrorAlertMessage(from: error)
             showWeatherErrorAlert(alertMessage: alertMessage)
@@ -64,12 +56,8 @@ extension WeatherViewController {
     
     private func setWeatherConditionImage(weatherCondition: WeatherCondition) {
         guard let image = UIImage(named: weatherCondition.imageName) else { return }
-        if let weatherConditionImageView = self.weatherConditionImageView {
-            weatherConditionImageView.image = image.withRenderingMode(.alwaysTemplate)
-            weatherConditionImageView.tintColor = weatherCondition.tintColor
-        } else {
-            print("weatherConditionImageView が nil")
-        }
+        weatherConditionImageView.image = image.withRenderingMode(.alwaysTemplate)
+        weatherConditionImageView.tintColor = weatherCondition.tintColor
     }
     
     private func weatherErrorAlertMessage(from error: Error) -> String {
