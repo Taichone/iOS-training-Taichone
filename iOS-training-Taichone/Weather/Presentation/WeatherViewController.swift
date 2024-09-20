@@ -20,6 +20,10 @@ final class WeatherViewController: UIViewController {
     @IBAction func onTapReloadButton(_ sender: Any) {
         fetchWeatherForecast()
     }
+    
+    @IBAction func onTapCloseButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension WeatherViewController {
