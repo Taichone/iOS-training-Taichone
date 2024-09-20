@@ -39,7 +39,7 @@ final class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController {
-    private func fetchWeatherForecast() {
+    func fetchWeatherForecast() {
         do {
             let weatherForecast = try weatherForecastProvider.getWeatherForecast()
             setWeatherConditionImage(weatherCondition: weatherForecast.weatherCondition)
