@@ -15,13 +15,13 @@ final class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(handleDidEnterForeground),
             name: .didEnterForeground,
             object: nil
         )
-        
         fetchWeatherForecast()
     }
     
