@@ -49,14 +49,25 @@ final class WeatherViewController: UIViewController {
 
 extension WeatherViewController {
     func fetchWeatherForecast() {
-        do {
-            let weatherForecast = try weatherForecastProvider.getWeatherForecast()
-            setWeatherConditionImage(weatherCondition: weatherForecast.weatherCondition)
-            minTemperatureLabel.text = String(weatherForecast.minTemperature)
-            maxTemperatureLabel.text = String(weatherForecast.maxTemperature)
-        } catch {
-            let alertMessage = weatherErrorAlertMessage(from: error)
-            showWeatherErrorAlert(alertMessage: alertMessage)
+        Task {
+            do {
+                let weatherForecast = try await withCheckedThrowingContinuation { continuation in
+                    Task.detached {
+                        do {
+                            let result = try await self.weatherForecastProvider.getWeatherForecast()
+                            continuation.resume(returning: result)
+                        } catch {
+                            continuation.resume(throwing: error)
+                        }
+                    }
+                }
+                setWeatherConditionImage(weatherCondition: weatherForecast.weatherCondition)
+                minTemperatureLabel.text = String(weatherForecast.minTemperature)
+                maxTemperatureLabel.text = String(weatherForecast.maxTemperature)
+            } catch {
+                let alertMessage = weatherErrorAlertMessage(from: error)
+                showWeatherErrorAlert(alertMessage: alertMessage)
+            }
         }
     }
     

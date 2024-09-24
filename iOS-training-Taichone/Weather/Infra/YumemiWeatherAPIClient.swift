@@ -25,7 +25,7 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
         }
         
         do {
-            let responseJSON = try YumemiWeather.fetchWeather(requestJSON)
+            let responseJSON = try YumemiWeather.syncFetchWeather(requestJSON)
             let responseData = Data(responseJSON.utf8)
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
