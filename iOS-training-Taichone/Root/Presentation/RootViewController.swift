@@ -18,7 +18,7 @@ final class RootViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Weather", bundle: nil)
         guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
-            WeatherViewController(coder: coder, weatherForecastProvider: YumemiWeatherAPIClient.shared)
+            WeatherViewController(coder: coder, weatherForecastProvider: YumemiWeatherAPIClient())
         }) else {
             fatalError("WeatherViewController could not be instantiated from Storyboard")
         }

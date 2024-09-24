@@ -8,10 +8,7 @@
 import YumemiWeather
 import Foundation
 
-final class YumemiWeatherAPIClient {
-    static let shared = YumemiWeatherAPIClient()
-    private init() {}
-}
+final class YumemiWeatherAPIClient {}
 
 extension YumemiWeatherAPIClient: WeatherForecastProvider {
     func getWeatherForecast() throws -> WeatherForecast {
