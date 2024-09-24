@@ -11,16 +11,26 @@ final class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherConditionImageView: UIImageView!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
+    private let weatherForecastProvider: WeatherForecastProvider
+    
+    init?(coder: NSCoder, weatherForecastProvider: WeatherForecastProvider) {
+        self.weatherForecastProvider = weatherForecastProvider
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(handleDidEnterForeground),
             name: .didEnterForeground,
             object: nil
         )
-        
         fetchWeatherForecast()
     }
     
@@ -38,9 +48,9 @@ final class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController {
-    private func fetchWeatherForecast() {
+    func fetchWeatherForecast() {
         do {
-            let weatherForecast = try YumemiWeatherAPIClient.getWeatherForecast()
+            let weatherForecast = try weatherForecastProvider.getWeatherForecast()
             setWeatherConditionImage(weatherCondition: weatherForecast.weatherCondition)
             minTemperatureLabel.text = String(weatherForecast.minTemperature)
             maxTemperatureLabel.text = String(weatherForecast.maxTemperature)
@@ -97,4 +107,8 @@ private extension WeatherCondition {
                 .red
         }
     }
+}
+
+protocol WeatherForecastProvider {
+    func getWeatherForecast() throws -> WeatherForecast
 }
