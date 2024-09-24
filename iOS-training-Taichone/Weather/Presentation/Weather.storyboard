@@ -85,6 +85,7 @@
                     <connections>
                         <outlet property="maxTemperatureLabel" destination="UHs-0M-3iy" id="PCf-lX-qPl"/>
                         <outlet property="minTemperatureLabel" destination="TSl-Ha-VVP" id="v4x-Th-u5o"/>
+                        <outlet property="reloadButton" destination="W3a-3g-hfX" id="lu2-3n-CXG"/>
                         <outlet property="weatherConditionImageView" destination="G6U-Hl-9eU" id="dJV-TN-en2"/>
                     </connections>
                 </viewController>

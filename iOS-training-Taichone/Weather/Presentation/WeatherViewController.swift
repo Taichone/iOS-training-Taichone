@@ -11,6 +11,7 @@ final class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherConditionImageView: UIImageView!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
+    @IBOutlet weak var reloadButton: UIButton!
     private let weatherForecastProvider: WeatherForecastProvider
     
     init?(coder: NSCoder, weatherForecastProvider: WeatherForecastProvider) {
@@ -50,25 +51,39 @@ final class WeatherViewController: UIViewController {
 extension WeatherViewController {
     func fetchWeatherForecast() {
         Task {
-            do {
-                let weatherForecast = try await withCheckedThrowingContinuation { continuation in
-                    Task.detached {
-                        do {
-                            let result = try await self.weatherForecastProvider.getWeatherForecast()
-                            continuation.resume(returning: result)
-                        } catch {
-                            continuation.resume(throwing: error)
-                        }
+            reloadButton.isEnabled = false
+            await loadAndSetWeatherForecast()
+            reloadButton.isEnabled = true
+        }
+    }
+    
+    private func loadAndSetWeatherForecast() async {
+        do {
+            // sub thread
+            let forecast = try await withCheckedThrowingContinuation { continuation in
+                Task.detached {
+                    do {
+                        let result = try await self.weatherForecastProvider.getWeatherForecast()
+                        continuation.resume(returning: result)
+                    } catch {
+                        continuation.resume(throwing: error)
                     }
                 }
-                setWeatherConditionImage(weatherCondition: weatherForecast.weatherCondition)
-                minTemperatureLabel.text = String(weatherForecast.minTemperature)
-                maxTemperatureLabel.text = String(weatherForecast.maxTemperature)
-            } catch {
-                let alertMessage = weatherErrorAlertMessage(from: error)
-                showWeatherErrorAlert(alertMessage: alertMessage)
             }
+            
+            // main thread
+            setWeatherForecast(forecast)
+        } catch {
+            // main thread
+            let alertMessage = weatherErrorAlertMessage(from: error)
+            showWeatherErrorAlert(alertMessage: alertMessage)
         }
+    }
+    
+    private func setWeatherForecast(_ forecast: WeatherForecast) {
+        setWeatherConditionImage(weatherCondition: forecast.weatherCondition)
+        minTemperatureLabel.text = String(forecast.minTemperature)
+        maxTemperatureLabel.text = String(forecast.maxTemperature)
     }
     
     private func setWeatherConditionImage(weatherCondition: WeatherCondition) {
