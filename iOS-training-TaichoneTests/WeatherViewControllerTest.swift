@@ -15,7 +15,7 @@ final class WeatherViewControllerTest: XCTestCase {
     
     override func setUpWithError() throws {
         let storyboard = UIStoryboard(name: "Weather", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController(creator: { coder in
+        vc = storyboard.instantiateInitialViewController(creator: { coder in
             WeatherViewController(coder: coder, weatherForecastProvider: self.weatherForecastProvider)
         })!
         vc.loadViewIfNeeded()
