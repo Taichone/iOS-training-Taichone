@@ -68,10 +68,10 @@ final class WeatherViewControllerTest: XCTestCase {
     
     @MainActor
     func test_天気予報の最高気温がUILabelに反映されること() {
-        let maxTemperature = 100
+        let expectedMaxTemperature = 100
         weatherForecastProvider.setWeatherForecast(.init(
             weatherCondition: .cloudy,
-            maxTemperature: maxTemperature,
+            maxTemperature: expectedMaxTemperature,
             minTemperature: 0,
             date: Date()
         ))
@@ -82,16 +82,16 @@ final class WeatherViewControllerTest: XCTestCase {
             XCTFail("maxTemperatureLabel.text が nil または Int に変換できない")
             return
         }
-        XCTAssertEqual(labelTextValue, maxTemperature)
+        XCTAssertEqual(labelTextValue, expectedMaxTemperature)
     }
     
     @MainActor
     func test_天気予報の最低気温がUILabelに反映されること() {
-        let minTemperature = -100
+        let expectedMinTemperature = -100
         weatherForecastProvider.setWeatherForecast(.init(
             weatherCondition: .cloudy,
             maxTemperature: 0,
-            minTemperature: minTemperature,
+            minTemperature: expectedMinTemperature,
             date: Date()
         ))
         
@@ -101,7 +101,7 @@ final class WeatherViewControllerTest: XCTestCase {
             XCTFail("minTemperatureLabel.text が nil または Int に変換できない")
             return
         }
-        XCTAssertEqual(labelTextValue, minTemperature)
+        XCTAssertEqual(labelTextValue, expectedMinTemperature)
     }
 }
 
