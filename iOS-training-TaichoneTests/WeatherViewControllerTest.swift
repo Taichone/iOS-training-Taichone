@@ -22,7 +22,7 @@ final class WeatherViewControllerTest: XCTestCase {
     }
 
     @MainActor
-    func test_天気予報がsunnyなら画面に晴れ画像が表示されること() async throws {
+    func test_天気予報がsunnyなら画面に晴れ画像が表示されること() async {
         weatherForecastProvider.setWeatherCondition(.sunny)
         
         await vc.loadAndSetWeatherForecast() // Act
@@ -37,7 +37,7 @@ final class WeatherViewControllerTest: XCTestCase {
     }
     
     @MainActor
-    func test_天気予報がcloudyなら画面に曇り画像が表示されること() async throws {
+    func test_天気予報がcloudyなら画面に曇り画像が表示されること() async {
         weatherForecastProvider.setWeatherCondition(.cloudy)
         
         await vc.loadAndSetWeatherForecast() // Act
@@ -52,7 +52,7 @@ final class WeatherViewControllerTest: XCTestCase {
     }
     
     @MainActor
-    func test_天気予報がrainyなら画面に雨画像が表示されること() async throws {
+    func test_天気予報がrainyなら画面に雨画像が表示されること() async {
         weatherForecastProvider.setWeatherCondition(.rainy)
         
         await vc.loadAndSetWeatherForecast() // Act
