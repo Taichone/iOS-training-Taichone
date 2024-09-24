@@ -62,7 +62,7 @@ extension WeatherViewController {
         }
     }
     
-    private func loadAndSetWeatherForecast() async {
+    func loadAndSetWeatherForecast() async {
         do {
             // sub thread
             let forecast = try await withCheckedThrowingContinuation { continuation in

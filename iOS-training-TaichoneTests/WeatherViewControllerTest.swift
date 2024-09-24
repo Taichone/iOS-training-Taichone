@@ -25,7 +25,7 @@ final class WeatherViewControllerTest: XCTestCase {
     func test_天気予報がsunnyなら画面に晴れ画像が表示されること() async throws {
         weatherForecastProvider.setWeatherCondition(.sunny)
         
-        vc.fetchWeatherForecast() // Act
+        await vc.loadAndSetWeatherForecast() // Act
         
         guard let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
               let sunnyImage = UIImage(named: "sunny")?.pngData() else {
@@ -40,7 +40,7 @@ final class WeatherViewControllerTest: XCTestCase {
     func test_天気予報がcloudyなら画面に曇り画像が表示されること() async throws {
         weatherForecastProvider.setWeatherCondition(.cloudy)
         
-        vc.fetchWeatherForecast() // Act
+        await vc.loadAndSetWeatherForecast() // Act
 
         guard let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
               let cloudyImage = UIImage(named: "cloudy")?.pngData() else {
@@ -55,7 +55,7 @@ final class WeatherViewControllerTest: XCTestCase {
     func test_天気予報がrainyなら画面に雨画像が表示されること() async throws {
         weatherForecastProvider.setWeatherCondition(.rainy)
         
-        vc.fetchWeatherForecast() // Act
+        await vc.loadAndSetWeatherForecast() // Act
 
         guard let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
               let rainyImage = UIImage(named: "rainy")?.pngData() else {
@@ -67,7 +67,7 @@ final class WeatherViewControllerTest: XCTestCase {
     }
     
     @MainActor
-    func test_天気予報の最高気温がUILabelに反映されること() {
+    func test_天気予報の最高気温がUILabelに反映されること() async {
         let expectedMaxTemperature = 100
         weatherForecastProvider.setWeatherForecast(.init(
             weatherCondition: .cloudy,
@@ -76,7 +76,7 @@ final class WeatherViewControllerTest: XCTestCase {
             date: Date()
         ))
         
-        vc.fetchWeatherForecast() // Act
+        await vc.loadAndSetWeatherForecast() // Act
 
         guard let labelTextValue = Int(vc.maxTemperatureLabel.text ?? "") else {
             XCTFail("maxTemperatureLabel.text が nil または Int に変換できない")
@@ -86,7 +86,7 @@ final class WeatherViewControllerTest: XCTestCase {
     }
     
     @MainActor
-    func test_天気予報の最低気温がUILabelに反映されること() {
+    func test_天気予報の最低気温がUILabelに反映されること() async {
         let expectedMinTemperature = -100
         weatherForecastProvider.setWeatherForecast(.init(
             weatherCondition: .cloudy,
@@ -95,7 +95,7 @@ final class WeatherViewControllerTest: XCTestCase {
             date: Date()
         ))
         
-        vc.fetchWeatherForecast() // Act
+        await vc.loadAndSetWeatherForecast() // Act
 
         guard let labelTextValue = Int(vc.minTemperatureLabel.text ?? "") else {
             XCTFail("minTemperatureLabel.text が nil または Int に変換できない")
