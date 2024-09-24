@@ -12,6 +12,7 @@ final class WeatherViewController: UIViewController {
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     private let weatherForecastProvider: WeatherForecastProvider
     
     init?(coder: NSCoder, weatherForecastProvider: WeatherForecastProvider) {
@@ -52,7 +53,11 @@ extension WeatherViewController {
     func fetchWeatherForecast() {
         Task {
             reloadButton.isEnabled = false
+            loadingIndicator.startAnimating()
+
             await loadAndSetWeatherForecast()
+            
+            loadingIndicator.stopAnimating()
             reloadButton.isEnabled = true
         }
     }

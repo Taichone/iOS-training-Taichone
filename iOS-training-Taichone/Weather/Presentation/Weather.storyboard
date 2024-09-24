@@ -70,6 +70,9 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="3Ic-sJ-XwP">
+                                <rect key="frame" x="191" y="577.66666666666663" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -79,10 +82,13 @@
                             <constraint firstItem="d36-Ng-hfo" firstAttribute="top" secondItem="o6U-r1-SSX" secondAttribute="bottom" constant="80" id="M3G-ah-gJk"/>
                             <constraint firstItem="o6U-r1-SSX" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="bMn-he-SmW"/>
                             <constraint firstItem="o6U-r1-SSX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eu6-aU-DYh"/>
+                            <constraint firstItem="d36-Ng-hfo" firstAttribute="top" secondItem="3Ic-sJ-XwP" secondAttribute="centerY" constant="40" id="gls-p8-SLT"/>
+                            <constraint firstItem="3Ic-sJ-XwP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n33-IQ-SwX"/>
                             <constraint firstItem="o6U-r1-SSX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qtB-F1-V3d"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingIndicator" destination="3Ic-sJ-XwP" id="2e2-3u-syM"/>
                         <outlet property="maxTemperatureLabel" destination="UHs-0M-3iy" id="PCf-lX-qPl"/>
                         <outlet property="minTemperatureLabel" destination="TSl-Ha-VVP" id="v4x-Th-u5o"/>
                         <outlet property="reloadButton" destination="W3a-3g-hfX" id="lu2-3n-CXG"/>
