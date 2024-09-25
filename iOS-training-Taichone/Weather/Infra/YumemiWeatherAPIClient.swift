@@ -11,7 +11,7 @@ import Foundation
 final class YumemiWeatherAPIClient {}
 
 extension YumemiWeatherAPIClient: WeatherForecastProvider {
-    func getWeatherForecast() throws -> WeatherForecast {
+    func getWeatherForecast() async throws -> WeatherForecast {
         let request = GetWeatherForecastRequest(
             area: Area.tokyo.rawValue, // NOTE: 現時点では指定されていないためハードコード
             date: Date()
@@ -25,7 +25,16 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
         }
         
         do {
-            let responseJSON = try YumemiWeather.syncFetchWeather(requestJSON)
+            // 時間のかかる処理を async に対応させる
+            let responseJSON = try await withCheckedThrowingContinuation { continuation in
+                do {
+                    let responseJSON = try YumemiWeather.syncFetchWeather(requestJSON)
+                    continuation.resume(returning: responseJSON)
+                } catch {
+                    continuation.resume(throwing: error)
+                }
+            }
+            
             let responseData = Data(responseJSON.utf8)
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase

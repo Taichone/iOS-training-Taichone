@@ -64,22 +64,9 @@ extension WeatherViewController {
     
     func loadAndSetWeatherForecast() async {
         do {
-            // sub thread
-            let forecast = try await withCheckedThrowingContinuation { continuation in
-                Task.detached {
-                    do {
-                        let result = try await self.weatherForecastProvider.getWeatherForecast()
-                        continuation.resume(returning: result)
-                    } catch {
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-            
-            // main thread
+            let forecast = try await weatherForecastProvider.getWeatherForecast() // sub thread
             setWeatherForecast(forecast)
         } catch {
-            // main thread
             let alertMessage = weatherErrorAlertMessage(from: error)
             showWeatherErrorAlert(alertMessage: alertMessage)
         }
@@ -141,5 +128,5 @@ private extension WeatherCondition {
 }
 
 protocol WeatherForecastProvider {
-    func getWeatherForecast() throws -> WeatherForecast
+    func getWeatherForecast() async throws -> WeatherForecast
 }
