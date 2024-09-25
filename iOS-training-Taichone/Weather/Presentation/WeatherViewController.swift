@@ -47,6 +47,10 @@ final class WeatherViewController: UIViewController {
     @objc private func handleDidEnterForeground() {
         fetchWeatherForecast()
     }
+    
+    deinit {
+        print("WeatherViewController - deinit")
+    }
 }
 
 extension WeatherViewController {
