@@ -23,7 +23,6 @@ final class RootViewController: UIViewController {
         }) else {
             fatalError("WeatherViewController could not be instantiated from Storyboard")
         }
-        apiClient.delegate = viewController
         
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.modalPresentationStyle = .fullScreen

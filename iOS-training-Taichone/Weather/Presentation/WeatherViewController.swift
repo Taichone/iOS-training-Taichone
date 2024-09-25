@@ -63,7 +63,22 @@ extension WeatherViewController {
     func fetchWeatherForecast() {
         reloadButton.isEnabled = false
         loadingIndicator.startAnimating()
-        weatherForecastProvider.fetchWeatherForecast()
+        
+        weatherForecastProvider.fetchWeatherForecast { [weak self] result in
+            guard let self = self else { return }
+            
+            schedulerObject.runOnMainThread {
+                switch result {
+                case .success(let forecast):
+                    self.setWeatherForecast(forecast)
+                case .failure(let error):
+                    self.showWeatherErrorAlert(from: error)
+                }
+                
+                self.loadingIndicator.stopAnimating()
+                self.reloadButton.isEnabled = true
+            }
+        }
     }
     
     private func setWeatherForecast(_ forecast: WeatherForecast) {
@@ -105,24 +120,6 @@ extension WeatherViewController {
     }
 }
 
-extension WeatherViewController: YumemiWeatherAPIClientDelegate {
-    func didGetWeatherForecast(_ forecast: WeatherForecast) {
-        schedulerObject.runOnMainThread {
-            self.setWeatherForecast(forecast)
-            self.loadingIndicator.stopAnimating()
-            self.reloadButton.isEnabled = true
-        }
-    }
-    
-    func didGetWeatherForecastWithError(_ error: any Error) {
-        schedulerObject.runOnMainThread {
-            self.showWeatherErrorAlert(from: error)
-            self.loadingIndicator.stopAnimating()
-            self.reloadButton.isEnabled = true
-        }
-    }
-}
-
 private extension WeatherCondition {
     var imageName: String {
         rawValue
@@ -141,5 +138,5 @@ private extension WeatherCondition {
 }
 
 protocol WeatherForecastProvider {
-    func fetchWeatherForecast()
+    func fetchWeatherForecast(completion: @escaping ((Result<WeatherForecast, Error>) -> Void))
 }

@@ -25,8 +25,6 @@ final class WeatherViewControllerTest: XCTestCase {
             fatalError("WeatherViewController could not be instantiated from Storyboard")
         }
         vc = viewController
-        
-        weatherForecastProvider.delegate = vc
         vc.loadViewIfNeeded()
     }
 
@@ -125,7 +123,6 @@ final class WeatherViewControllerTest: XCTestCase {
 extension WeatherViewControllerTest {
     private final class WeatherForecastProviderMock: WeatherForecastProvider {
         private(set) var weatherForecast: WeatherForecast?
-        weak var delegate: YumemiWeatherAPIClientDelegate?
 
         func setWeatherForecast(_ weatherForecast: WeatherForecast) {
             self.weatherForecast = weatherForecast
@@ -141,13 +138,12 @@ extension WeatherViewControllerTest {
         }
         
         // MARK: - WeatherForecastProvider Protocol
-
-        func fetchWeatherForecast() {
+        func fetchWeatherForecast(completion: @escaping ((Result<WeatherForecast, Error>) -> Void)) {
             do {
                 let forecast = try getWeatherForecast()
-                delegate?.didGetWeatherForecast(forecast)
+                completion(.success(forecast))
             } catch {
-                delegate?.didGetWeatherForecastWithError(error)
+                completion(.failure(error))
             }
         }
         

@@ -20,14 +20,7 @@ final class Scheduler: SchedulerObject {
     }
 }
 
-protocol YumemiWeatherAPIClientDelegate: AnyObject {
-    func didGetWeatherForecast(_ forecast: WeatherForecast)
-    func didGetWeatherForecastWithError(_ error: Error)
-}
-
-final class YumemiWeatherAPIClient {
-    weak var delegate: YumemiWeatherAPIClientDelegate?
-}
+final class YumemiWeatherAPIClient {}
 
 extension YumemiWeatherAPIClient: WeatherForecastProvider {
     func getWeatherForecast() async throws -> WeatherForecast {
@@ -75,13 +68,13 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
         }
     }
     
-    func fetchWeatherForecast() {
+    func fetchWeatherForecast(completion: @escaping ((Result<WeatherForecast, Error>) -> Void)) {
         Task {
             do {
                 let forecast = try await getWeatherForecast()
-                delegate?.didGetWeatherForecast(forecast)
+                completion(.success(forecast))
             } catch {
-                delegate?.didGetWeatherForecastWithError(error)
+                completion(.failure(error))
             }
         }
     }
