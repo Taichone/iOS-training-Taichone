@@ -135,7 +135,7 @@ extension WeatherViewControllerTest {
         
         // MARK: - WeatherForecastProvider Protocol
         
-        func fetchWeatherForecast() throws -> iOS_training_Taichone.WeatherForecast {
+        func fetchWeatherForecast() async throws -> WeatherForecast {
             if let weatherForecast = weatherForecast {
                 return weatherForecast
             } else {
