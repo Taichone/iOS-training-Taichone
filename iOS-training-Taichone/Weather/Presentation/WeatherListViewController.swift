@@ -6,16 +6,39 @@
 //
 
 import UIKit
+import Combine
 
 protocol WeatherForecastProvider {
     func fetchWeatherForecast() async throws -> WeatherForecast // TODO: - 削除
     func fetchWeatherAreaWeatherForecastList() async throws -> [AreaWeatherForecast]
 }
 
+struct WeatherListSectionModel: Hashable {
+    let title: String
+}
+
+struct WeatherListItemModel: Hashable {
+    let areaWeatherForecast: AreaWeatherForecast
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(areaWeatherForecast)
+    }
+    
+    static func == (lhs: WeatherListItemModel, rhs: WeatherListItemModel) -> Bool {
+        lhs.areaWeatherForecast == rhs.areaWeatherForecast
+    }
+}
+
 final class WeatherListViewController: UIViewController {
+    private typealias SnapShot = NSDiffableDataSourceSnapshot<WeatherListSectionModel, WeatherListItemModel>
+    private typealias DataSource = UITableViewDiffableDataSource<WeatherListSectionModel, WeatherListItemModel>
+    
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    
     private let weatherForecastProvider: WeatherForecastProvider
+    private var dataSource: DataSource!
     
     init?(coder: NSCoder, weatherForecastProvider: WeatherForecastProvider) {
         self.weatherForecastProvider = weatherForecastProvider
@@ -38,7 +61,17 @@ final class WeatherListViewController: UIViewController {
         
         Task {
             await fetchAreaWeatherForecastList()
+            
         }
+    }
+    
+    func setTableView() {
+//        dataSource = .init(
+//            tableView: tableView,
+//            cellProvider: { tableView, indexPath, item in
+//                let cell = 
+//            }
+//        )
     }
     
     @IBAction private func onTapReloadButton(_ sender: Any) {
