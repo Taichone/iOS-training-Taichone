@@ -11,6 +11,8 @@ final class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherConditionImageView: UIImageView!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
+    @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     private let weatherForecastProvider: WeatherForecastProvider
     
     init?(coder: NSCoder, weatherForecastProvider: WeatherForecastProvider) {
@@ -49,15 +51,31 @@ final class WeatherViewController: UIViewController {
 
 extension WeatherViewController {
     func fetchWeatherForecast() {
+        Task {
+            reloadButton.isEnabled = false
+            loadingIndicator.startAnimating()
+
+            await loadAndSetWeatherForecast()
+            
+            loadingIndicator.stopAnimating()
+            reloadButton.isEnabled = true
+        }
+    }
+    
+    func loadAndSetWeatherForecast() async {
         do {
-            let weatherForecast = try weatherForecastProvider.getWeatherForecast()
-            setWeatherConditionImage(weatherCondition: weatherForecast.weatherCondition)
-            minTemperatureLabel.text = String(weatherForecast.minTemperature)
-            maxTemperatureLabel.text = String(weatherForecast.maxTemperature)
+            let forecast = try await weatherForecastProvider.getWeatherForecast() // sub thread
+            setWeatherForecast(forecast)
         } catch {
             let alertMessage = weatherErrorAlertMessage(from: error)
             showWeatherErrorAlert(alertMessage: alertMessage)
         }
+    }
+    
+    private func setWeatherForecast(_ forecast: WeatherForecast) {
+        setWeatherConditionImage(weatherCondition: forecast.weatherCondition)
+        minTemperatureLabel.text = String(forecast.minTemperature)
+        maxTemperatureLabel.text = String(forecast.maxTemperature)
     }
     
     private func setWeatherConditionImage(weatherCondition: WeatherCondition) {
@@ -110,5 +128,5 @@ private extension WeatherCondition {
 }
 
 protocol WeatherForecastProvider {
-    func getWeatherForecast() throws -> WeatherForecast
+    func getWeatherForecast() async throws -> WeatherForecast
 }
