@@ -137,4 +137,5 @@ private extension WeatherCondition {
 
 protocol WeatherForecastProvider {
     func fetchWeatherForecast() async throws -> WeatherForecast
+    func fetchWeatherAreaWeatherForecastList() async throws -> [AreaWeatherForecast]
 }

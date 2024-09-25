@@ -32,13 +32,13 @@ final class WeatherListViewController: UIViewController {
         )
         
         Task {
-            await fetchWeatherForecast()
+            await fetchAreaWeatherForecastList()
         }
     }
     
     @IBAction private func onTapReloadButton(_ sender: Any) {
         Task {
-            await fetchWeatherForecast()
+            await fetchAreaWeatherForecastList()
         }
     }
     
@@ -48,7 +48,7 @@ final class WeatherListViewController: UIViewController {
 
     @objc private func handleDidEnterForeground() {
         Task {
-            await fetchWeatherForecast()
+            await fetchAreaWeatherForecastList()
         }
     }
     
@@ -58,13 +58,14 @@ final class WeatherListViewController: UIViewController {
 }
 
 extension WeatherListViewController {
-    func fetchWeatherForecast() async {
+    func fetchAreaWeatherForecastList() async {
         reloadButton.isEnabled = false
         loadingIndicator.startAnimating()
         
         do {
             // TODO: API からリストでもらい、反映する
-            let forecast = try await weatherForecastProvider.fetchWeatherForecast()
+            let areaWeatherForecastList = try await weatherForecastProvider.fetchWeatherAreaWeatherForecastList()
+            print(areaWeatherForecastList)
         } catch {
             let alertMessage = self.weatherErrorAlertMessage(from: error)
             self.showWeatherErrorAlert(alertMessage: alertMessage)
@@ -92,7 +93,7 @@ extension WeatherListViewController {
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in }
         let retryAction = UIAlertAction(title: "再取得", style: .default) { _ in
             Task {
-                await self.fetchWeatherForecast()
+                await self.fetchAreaWeatherForecastList()
             }
         }
         
