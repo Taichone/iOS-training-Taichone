@@ -8,7 +8,14 @@
 import YumemiWeather
 import Foundation
 
-final class YumemiWeatherAPIClient {}
+protocol YumemiWeatherAPIClientDelegate: AnyObject {
+    func didGetWeatherForecast(_ forecast: WeatherForecast, completion: (() -> Void)?)
+    func didGetWeatherForecastWithError(_ error: Error, completion: (() -> Void)?)
+}
+
+final class YumemiWeatherAPIClient {
+    weak var delegate: YumemiWeatherAPIClientDelegate?
+}
 
 extension YumemiWeatherAPIClient: WeatherForecastProvider {
     func getWeatherForecast() async throws -> WeatherForecast {
@@ -52,6 +59,17 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
                 }
             } else {
                 throw YumemiWeatherAPIError.invalidResponseError
+            }
+        }
+    }
+    
+    func fetchWeatherForecast(completion: (() -> Void)? = nil) {
+        Task {
+            do {
+                let forecast = try await getWeatherForecast()
+                delegate?.didGetWeatherForecast(forecast, completion: completion)
+            } catch {
+                delegate?.didGetWeatherForecastWithError(error, completion: completion)
             }
         }
     }

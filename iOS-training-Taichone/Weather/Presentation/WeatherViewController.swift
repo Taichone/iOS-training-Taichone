@@ -50,26 +50,10 @@ final class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController {
-    func fetchWeatherForecast() {
-        Task {
-            reloadButton.isEnabled = false
-            loadingIndicator.startAnimating()
-
-            await loadAndSetWeatherForecast()
-            
-            loadingIndicator.stopAnimating()
-            reloadButton.isEnabled = true
-        }
-    }
-    
-    func loadAndSetWeatherForecast() async {
-        do {
-            let forecast = try await weatherForecastProvider.getWeatherForecast() // sub thread
-            setWeatherForecast(forecast)
-        } catch {
-            let alertMessage = weatherErrorAlertMessage(from: error)
-            showWeatherErrorAlert(alertMessage: alertMessage)
-        }
+    func fetchWeatherForecast(completion: (() -> Void)? = nil) {
+        reloadButton.isEnabled = false
+        loadingIndicator.startAnimating()
+        weatherForecastProvider.fetchWeatherForecast(completion: completion)
     }
     
     private func setWeatherForecast(_ forecast: WeatherForecast) {
@@ -110,6 +94,35 @@ extension WeatherViewController {
     }
 }
 
+extension WeatherViewController: YumemiWeatherAPIClientDelegate {
+    func didGetWeatherForecast(_ forecast: WeatherForecast, completion: (() -> Void)? = nil) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.setWeatherForecast(forecast)
+            self.loadingIndicator.stopAnimating()
+            self.reloadButton.isEnabled = true
+            
+            if let completion = completion {
+                completion()
+            }
+        }
+    }
+    
+    func didGetWeatherForecastWithError(_ error: any Error, completion: (() -> Void)? = nil) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let alertMessage = self.weatherErrorAlertMessage(from: error)
+            self.showWeatherErrorAlert(alertMessage: alertMessage)
+            self.loadingIndicator.stopAnimating()
+            self.reloadButton.isEnabled = true
+            
+            if let completion = completion {
+                completion()
+            }
+        }
+    }
+}
+
 private extension WeatherCondition {
     var imageName: String {
         rawValue
@@ -128,5 +141,5 @@ private extension WeatherCondition {
 }
 
 protocol WeatherForecastProvider {
-    func getWeatherForecast() async throws -> WeatherForecast
+    func fetchWeatherForecast(completion: (() -> Void)?)
 }
