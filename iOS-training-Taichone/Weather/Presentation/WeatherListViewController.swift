@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol WeatherForecastProvider {
+    func fetchWeatherForecast() async throws -> WeatherForecast // TODO: - 削除
+    func fetchWeatherAreaWeatherForecastList() async throws -> [AreaWeatherForecast]
+}
+
 final class WeatherListViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var reloadButton: UIButton!

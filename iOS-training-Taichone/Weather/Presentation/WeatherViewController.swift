@@ -7,6 +7,8 @@
 
 import UIKit
 
+// TODO: - 静的なビューに変更（SwiftUI の hosting でも OK）
+
 final class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherConditionImageView: UIImageView!
     @IBOutlet weak var minTemperatureLabel: UILabel!
@@ -133,9 +135,4 @@ private extension WeatherCondition {
                 .red
         }
     }
-}
-
-protocol WeatherForecastProvider {
-    func fetchWeatherForecast() async throws -> WeatherForecast
-    func fetchWeatherAreaWeatherForecastList() async throws -> [AreaWeatherForecast]
 }
