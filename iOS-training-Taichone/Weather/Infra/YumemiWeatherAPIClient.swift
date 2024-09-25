@@ -24,16 +24,8 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
             throw YumemiWeatherAPIError.invalidRequestError
         }
         
-        do {
-            // 時間のかかる処理を async に対応させる
-            let responseJSON = try await withCheckedThrowingContinuation { continuation in
-                do {
-                    let responseJSON = try YumemiWeather.syncFetchWeather(requestJSON)
-                    continuation.resume(returning: responseJSON)
-                } catch {
-                    continuation.resume(throwing: error)
-                }
-            }
+        do {            
+            let responseJSON = try await YumemiWeather.asyncFetchWeather(requestJSON)
             
             let responseData = Data(responseJSON.utf8)
             let decoder = JSONDecoder()

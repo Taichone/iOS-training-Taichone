@@ -87,7 +87,7 @@ final class WeatherViewControllerTest: XCTestCase {
             ))
         
         await vc.fetchWeatherForecast()
-            
+
         guard let labelTextValue = Int(vc.maxTemperatureLabel.text ?? "") else {
             XCTFail("maxTemperatureLabel.text が nil または Int に変換できない")
             return
