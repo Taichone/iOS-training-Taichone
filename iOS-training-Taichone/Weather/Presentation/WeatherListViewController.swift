@@ -10,7 +10,7 @@ import Combine
 
 protocol WeatherForecastProvider {
     func fetchWeatherForecast() async throws -> WeatherForecast // TODO: - 削除
-    func fetchWeatherAreaWeatherForecastList() async throws -> [AreaWeatherForecast]
+    func fetchAreaWeatherForecastList() async throws -> [AreaWeatherForecast]
 }
 
 struct WeatherListSectionModel: Hashable {
@@ -136,7 +136,7 @@ extension WeatherListViewController {
         loadingIndicator.startAnimating()
         
         do {
-            let areaWeatherForecastList = try await weatherForecastProvider.fetchWeatherAreaWeatherForecastList()
+            let areaWeatherForecastList = try await weatherForecastProvider.fetchAreaWeatherForecastList()
             bind(areaWeatherForecasts: areaWeatherForecastList)
         } catch {
             let alertMessage = self.weatherErrorAlertMessage(from: error)

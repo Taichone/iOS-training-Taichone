@@ -48,7 +48,7 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
         }
     }
     
-    func fetchWeatherAreaWeatherForecastList() async throws -> [AreaWeatherForecast] {
+    func fetchAreaWeatherForecastList() async throws -> [AreaWeatherForecast] {
         // NOTE: 現時点では指定されていないためハードコード
         let request = FetchWeatherListRequest(
             areas: [
