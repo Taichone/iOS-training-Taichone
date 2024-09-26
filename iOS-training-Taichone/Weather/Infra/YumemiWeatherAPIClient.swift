@@ -10,9 +10,9 @@ import Foundation
 
 final class YumemiWeatherAPIClient {}
 
-extension YumemiWeatherAPIClient: WeatherForecastProvider {
-    func fetchWeatherForecast() async throws -> WeatherForecast {
-        let request = GetWeatherForecastRequest(
+extension YumemiWeatherAPIClient: WeatherProvider {
+    func fetchWeatherInfo() async throws -> WeatherInfo {
+        let request = GetWeatherInfoRequest(
             area: Area.tokyo.rawValue, // NOTE: 現時点では指定されていないためハードコード
             date: Date()
         )
@@ -31,9 +31,9 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             decoder.dateDecodingStrategy = .iso8601
-            let response = try decoder.decode(GetWeatherForecastResponse.self, from: responseData)
+            let response = try decoder.decode(GetWeatherInfoResponse.self, from: responseData)
             
-            return try response.convertToWeatherForecast()
+            return try response.convertToWeatherInfo()
         } catch {
             if let yumemiWeatherError = error as? YumemiWeatherError {
                 switch yumemiWeatherError {
@@ -48,7 +48,7 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
         }
     }
     
-    func fetchAreaWeatherForecastList() async throws -> [AreaWeatherForecast] {
+    func fetchAreaWeatherInfoList() async throws -> [AreaWeatherInfo] {
         // NOTE: 現時点では指定されていないためハードコード
         let request = FetchWeatherListRequest(
             areas: [
@@ -79,7 +79,7 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
             let response = try decoder.decode([FetchWeatherListResponse].self, from: responseData)
             
             return try response.map {
-                try $0.convertToAreaWeatherForecast()
+                try $0.convertToAreaWeatherInfo()
             }
         } catch {
             if let yumemiWeatherError = error as? YumemiWeatherError {
@@ -104,10 +104,10 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
         let area: String
         let info: Info
 
-        func convertToAreaWeatherForecast() throws -> AreaWeatherForecast {
+        func convertToAreaWeatherInfo() throws -> AreaWeatherInfo {
             .init(
                 area: area,
-                forecast: try info.convertToWeatherForecast()
+                forecast: try info.convertToWeatherInfo()
             )
         }
 
@@ -117,7 +117,7 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
             let minTemperature: Int
             let date: Date
 
-            func convertToWeatherForecast() throws -> WeatherForecast {
+            func convertToWeatherInfo() throws -> WeatherInfo {
                 guard let weatherCondition = WeatherCondition(rawValue: weatherCondition) else {
                     throw YumemiWeatherAPIError.invalidResponseError
                 }
@@ -132,18 +132,18 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
         }
     }
     
-    private struct GetWeatherForecastRequest: Encodable {
+    private struct GetWeatherInfoRequest: Encodable {
         let area: String
         let date: Date
     }
     
-    private struct GetWeatherForecastResponse: Decodable {
+    private struct GetWeatherInfoResponse: Decodable {
         let weatherCondition: String
         let maxTemperature: Int
         let minTemperature: Int
         let date: Date
         
-        func convertToWeatherForecast() throws -> WeatherForecast {
+        func convertToWeatherInfo() throws -> WeatherInfo {
             guard let weatherCondition = WeatherCondition(rawValue: weatherCondition) else {
                 throw YumemiWeatherAPIError.invalidResponseError
             }

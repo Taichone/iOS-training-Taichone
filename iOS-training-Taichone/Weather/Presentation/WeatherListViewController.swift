@@ -8,9 +8,9 @@
 import UIKit
 import Combine
 
-protocol WeatherForecastProvider {
-    func fetchWeatherForecast() async throws -> WeatherForecast // TODO: - 削除
-    func fetchAreaWeatherForecastList() async throws -> [AreaWeatherForecast]
+protocol WeatherProvider {
+    func fetchWeatherInfo() async throws -> WeatherInfo // TODO: - 削除
+    func fetchAreaWeatherInfoList() async throws -> [AreaWeatherInfo]
 }
 
 struct WeatherListSectionModel: Hashable {
@@ -18,14 +18,14 @@ struct WeatherListSectionModel: Hashable {
 }
 
 struct WeatherListItemModel: Hashable {
-    let areaWeatherForecast: AreaWeatherForecast
+    let areaWeatherInfo: AreaWeatherInfo
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(areaWeatherForecast)
+        hasher.combine(areaWeatherInfo)
     }
     
     static func == (lhs: WeatherListItemModel, rhs: WeatherListItemModel) -> Bool {
-        lhs.areaWeatherForecast == rhs.areaWeatherForecast
+        lhs.areaWeatherInfo == rhs.areaWeatherInfo
     }
 }
 
@@ -37,11 +37,11 @@ final class WeatherListViewController: UIViewController {
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    private let weatherForecastProvider: WeatherForecastProvider
+    private let weatherProvider: WeatherProvider
     private var dataSource: DataSource!
     
-    init?(coder: NSCoder, weatherForecastProvider: WeatherForecastProvider) {
-        self.weatherForecastProvider = weatherForecastProvider
+    init?(coder: NSCoder, weatherProvider: WeatherProvider) {
+        self.weatherProvider = weatherProvider
         super.init(coder: coder)
     }
     
@@ -121,7 +121,7 @@ extension WeatherListViewController: UITableViewDelegate {
 
         let storyboard = UIStoryboard(name: "Weather", bundle: nil)
         guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
-            WeatherViewController(coder: coder, areaWeatherForecast: item.areaWeatherForecast)
+            WeatherViewController(coder: coder, areaWeatherInfo: item.areaWeatherInfo)
         }) else {
             fatalError("WeatherViewController could not be instantiated from Storyboard")
         }
@@ -132,17 +132,17 @@ extension WeatherListViewController: UITableViewDelegate {
 extension WeatherListViewController {
     @objc func fetchList() {
         Task {
-            await fetchAreaWeatherForecastList()
+            await fetchAreaWeatherInfoList()
         }
     }
     
-    func fetchAreaWeatherForecastList() async {
+    func fetchAreaWeatherInfoList() async {
         reloadButton.isEnabled = false
         loadingIndicator.startAnimating()
         
         do {
-            let areaWeatherForecastList = try await weatherForecastProvider.fetchAreaWeatherForecastList()
-            bind(areaWeatherForecasts: areaWeatherForecastList)
+            let areaWeatherInfoList = try await weatherProvider.fetchAreaWeatherInfoList()
+            bind(areaWeatherInfos: areaWeatherInfoList)
         } catch {
             let alertMessage = self.weatherErrorAlertMessage(from: error)
             self.showWeatherErrorAlert(alertMessage: alertMessage)
@@ -152,13 +152,13 @@ extension WeatherListViewController {
         self.reloadButton.isEnabled = true
     }
     
-    private func bind(areaWeatherForecasts: [AreaWeatherForecast]) {
+    private func bind(areaWeatherInfos: [AreaWeatherInfo]) {
         var snapShot = SnapShot()
         
         // NOTE: 現時点では複数 section は考慮していない
         let section = WeatherListSectionModel(title: "地域別")
-        let items: [WeatherListItemModel] = areaWeatherForecasts.compactMap {
-            .init(areaWeatherForecast: $0)
+        let items: [WeatherListItemModel] = areaWeatherInfos.compactMap {
+            .init(areaWeatherInfo: $0)
         }
         
         snapShot.appendSections([section])
@@ -184,7 +184,7 @@ extension WeatherListViewController {
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in }
         let retryAction = UIAlertAction(title: "再取得", style: .default) { _ in
             Task {
-                await self.fetchAreaWeatherForecastList()
+                await self.fetchAreaWeatherInfoList()
             }
         }
         

@@ -11,10 +11,10 @@ final class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherConditionImageView: UIImageView!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
-    private let areaWeatherForecast: AreaWeatherForecast
+    private let areaWeatherInfo: AreaWeatherInfo
     
-    init?(coder: NSCoder, areaWeatherForecast: AreaWeatherForecast) {
-        self.areaWeatherForecast = areaWeatherForecast
+    init?(coder: NSCoder, areaWeatherInfo: AreaWeatherInfo) {
+        self.areaWeatherInfo = areaWeatherInfo
         super.init(coder: coder)
     }
     
@@ -24,9 +24,9 @@ final class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = areaWeatherForecast.area
+        navigationItem.title = areaWeatherInfo.area
         navigationItem.largeTitleDisplayMode = .never
-        setWeatherForecast(areaWeatherForecast.forecast)
+        setWeatherInfo(areaWeatherInfo.forecast)
     }
     
     deinit {
@@ -35,7 +35,7 @@ final class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController {
-    private func setWeatherForecast(_ forecast: WeatherForecast) {
+    private func setWeatherInfo(_ forecast: WeatherInfo) {
         setWeatherConditionImage(weatherCondition: forecast.weatherCondition)
         minTemperatureLabel.text = String(forecast.minTemperature)
         maxTemperatureLabel.text = String(forecast.maxTemperature)
