@@ -133,6 +133,9 @@ extension WeatherListViewController {
     @objc func fetchList() {
         Task {
             await fetchAreaWeatherInfoList()
+            DispatchQueue.main.async {
+                self.tableView.refreshControl?.endRefreshing()
+            }
         }
     }
     
