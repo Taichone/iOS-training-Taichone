@@ -8,9 +8,21 @@
 import YumemiWeather
 import Foundation
 
+protocol SchedulerObject {
+    func runOnMainThread(_ block: @escaping () -> Void)
+}
+
+final class Scheduler: SchedulerObject {
+    func runOnMainThread(_ block: @escaping () -> Void) {
+        Task { @MainActor in
+            block()
+        }
+    }
+}
+
 protocol YumemiWeatherAPIClientDelegate: AnyObject {
-    func didGetWeatherForecast(_ forecast: WeatherForecast, completion: (() -> Void)?)
-    func didGetWeatherForecastWithError(_ error: Error, completion: (() -> Void)?)
+    func didGetWeatherForecast(_ forecast: WeatherForecast)
+    func didGetWeatherForecastWithError(_ error: Error)
 }
 
 final class YumemiWeatherAPIClient {
@@ -63,13 +75,13 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
         }
     }
     
-    func fetchWeatherForecast(completion: (() -> Void)? = nil) {
+    func fetchWeatherForecast() {
         Task {
             do {
                 let forecast = try await getWeatherForecast()
-                delegate?.didGetWeatherForecast(forecast, completion: completion)
+                delegate?.didGetWeatherForecast(forecast)
             } catch {
-                delegate?.didGetWeatherForecastWithError(error, completion: completion)
+                delegate?.didGetWeatherForecastWithError(error)
             }
         }
     }

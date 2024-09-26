@@ -14,9 +14,15 @@ final class WeatherViewController: UIViewController {
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     private let weatherForecastProvider: WeatherForecastProvider
-    
-    init?(coder: NSCoder, weatherForecastProvider: WeatherForecastProvider) {
+    private let schedulerObject: SchedulerObject
+       
+    init?(
+        coder: NSCoder,
+        weatherForecastProvider: WeatherForecastProvider,
+        schedulerObject: SchedulerObject = Scheduler()
+    ) {
         self.weatherForecastProvider = weatherForecastProvider
+        self.schedulerObject = schedulerObject
         super.init(coder: coder)
     }
     
@@ -54,10 +60,10 @@ final class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController {
-    func fetchWeatherForecast(completion: (() -> Void)? = nil) {
+    func fetchWeatherForecast() {
         reloadButton.isEnabled = false
         loadingIndicator.startAnimating()
-        weatherForecastProvider.fetchWeatherForecast(completion: completion)
+        weatherForecastProvider.fetchWeatherForecast()
     }
     
     private func setWeatherForecast(_ forecast: WeatherForecast) {
@@ -85,7 +91,8 @@ extension WeatherViewController {
         }
     }
     
-    private func showWeatherErrorAlert(alertMessage: String) {
+    private func showWeatherErrorAlert(from error: Error) {
+        let alertMessage = self.weatherErrorAlertMessage(from: error)
         let alertController = UIAlertController(title: "天気予報の取得に失敗", message: alertMessage, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in }
         let retryAction = UIAlertAction(title: "再取得", style: .default) { _ in
@@ -99,30 +106,19 @@ extension WeatherViewController {
 }
 
 extension WeatherViewController: YumemiWeatherAPIClientDelegate {
-    func didGetWeatherForecast(_ forecast: WeatherForecast, completion: (() -> Void)? = nil) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+    func didGetWeatherForecast(_ forecast: WeatherForecast) {
+        schedulerObject.runOnMainThread {
             self.setWeatherForecast(forecast)
             self.loadingIndicator.stopAnimating()
             self.reloadButton.isEnabled = true
-            
-            if let completion = completion {
-                completion()
-            }
         }
     }
     
-    func didGetWeatherForecastWithError(_ error: any Error, completion: (() -> Void)? = nil) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            let alertMessage = self.weatherErrorAlertMessage(from: error)
-            self.showWeatherErrorAlert(alertMessage: alertMessage)
+    func didGetWeatherForecastWithError(_ error: any Error) {
+        schedulerObject.runOnMainThread {
+            self.showWeatherErrorAlert(from: error)
             self.loadingIndicator.stopAnimating()
             self.reloadButton.isEnabled = true
-            
-            if let completion = completion {
-                completion()
-            }
         }
     }
 }
@@ -145,5 +141,5 @@ private extension WeatherCondition {
 }
 
 protocol WeatherForecastProvider {
-    func fetchWeatherForecast(completion: (() -> Void)?)
+    func fetchWeatherForecast()
 }
