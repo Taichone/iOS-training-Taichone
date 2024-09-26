@@ -118,9 +118,14 @@ extension WeatherListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
-        
-        // TODO: 天気予報詳細画面へ遷移
-        print("tapped: \(item.areaWeatherForecast.area)")
+
+        let storyboard = UIStoryboard(name: "Weather", bundle: nil)
+        guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
+            WeatherViewController(coder: coder, areaWeatherForecast: item.areaWeatherForecast)
+        }) else {
+            fatalError("WeatherViewController could not be instantiated from Storyboard")
+        }
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

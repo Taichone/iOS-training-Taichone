@@ -24,7 +24,8 @@ final class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.title = areaWeatherForecast.area
+        navigationItem.title = areaWeatherForecast.area
+        navigationItem.largeTitleDisplayMode = .never
         setWeatherForecast(areaWeatherForecast.forecast)
     }
     
