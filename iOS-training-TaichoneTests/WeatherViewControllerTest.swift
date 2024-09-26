@@ -15,20 +15,31 @@ final class WeatherViewControllerTest: XCTestCase {
     
     override func setUpWithError() throws {
         let storyboard = UIStoryboard(name: "Weather", bundle: nil)
-        vc = storyboard.instantiateInitialViewController(creator: { coder in
-            WeatherViewController(coder: coder, weatherForecastProvider: self.weatherForecastProvider)
-        })!
+        guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
+            WeatherViewController(
+                coder: coder,
+                weatherForecastProvider: self.weatherForecastProvider,
+                schedulerObject: ImmediateScheduler()
+            )
+        }) else {
+            fatalError("WeatherViewController could not be instantiated from Storyboard")
+        }
+        vc = viewController
+        
+        weatherForecastProvider.delegate = vc
         vc.loadViewIfNeeded()
     }
 
     @MainActor
-    func test_天気予報がsunnyなら画面に晴れ画像が表示されること() async {
+    func test_天気予報がsunnyなら画面に晴れ画像が表示されること() {
         weatherForecastProvider.setWeatherCondition(.sunny)
         
-        await vc.loadAndSetWeatherForecast() // Act
-        
-        guard let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
-              let sunnyImage = UIImage(named: "sunny")?.pngData() else {
+        vc.fetchWeatherForecast()
+
+        guard
+            let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
+            let sunnyImage = UIImage(named: "sunny")?.pngData()
+        else {
             XCTFail("ImageView または Assets の　UIImage が取り出せない")
             return
         }
@@ -37,14 +48,16 @@ final class WeatherViewControllerTest: XCTestCase {
     }
     
     @MainActor
-    func test_天気予報がcloudyなら画面に曇り画像が表示されること() async {
+    func test_天気予報がcloudyなら画面に曇り画像が表示されること() {
         weatherForecastProvider.setWeatherCondition(.cloudy)
         
-        await vc.loadAndSetWeatherForecast() // Act
+        vc.fetchWeatherForecast()
 
-        guard let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
-              let cloudyImage = UIImage(named: "cloudy")?.pngData() else {
-            XCTFail("ImageView または Assets の　UIImage が取り出せない")
+        guard
+            let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
+            let cloudyImage = UIImage(named: "cloudy")?.pngData()
+        else {
+            XCTFail("ImageView または Assets の UIImage が取り出せない")
             return
         }
         XCTAssertEqual(imageViewImage, cloudyImage)
@@ -52,13 +65,15 @@ final class WeatherViewControllerTest: XCTestCase {
     }
     
     @MainActor
-    func test_天気予報がrainyなら画面に雨画像が表示されること() async {
+    func test_天気予報がrainyなら画面に雨画像が表示されること() {
         weatherForecastProvider.setWeatherCondition(.rainy)
         
-        await vc.loadAndSetWeatherForecast() // Act
+        vc.fetchWeatherForecast()
 
-        guard let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
-              let rainyImage = UIImage(named: "rainy")?.pngData() else {
+        guard
+            let imageViewImage = vc.weatherConditionImageView.image?.pngData(),
+            let rainyImage = UIImage(named: "rainy")?.pngData()
+        else {
             XCTFail("ImageView または Assets の　UIImage が取り出せない")
             return
         }
@@ -67,17 +82,18 @@ final class WeatherViewControllerTest: XCTestCase {
     }
     
     @MainActor
-    func test_天気予報の最高気温がUILabelに反映されること() async {
+    func test_天気予報の最高気温がUILabelに反映されること() {
         let expectedMaxTemperature = 100
-        weatherForecastProvider.setWeatherForecast(.init(
-            weatherCondition: .cloudy,
-            maxTemperature: expectedMaxTemperature,
-            minTemperature: 0,
-            date: Date()
-        ))
+        weatherForecastProvider.setWeatherForecast(
+            .init(
+                weatherCondition: .cloudy,
+                maxTemperature: expectedMaxTemperature,
+                minTemperature: 0,
+                date: Date()
+            ))
         
-        await vc.loadAndSetWeatherForecast() // Act
-
+        vc.fetchWeatherForecast()
+            
         guard let labelTextValue = Int(vc.maxTemperatureLabel.text ?? "") else {
             XCTFail("maxTemperatureLabel.text が nil または Int に変換できない")
             return
@@ -86,16 +102,17 @@ final class WeatherViewControllerTest: XCTestCase {
     }
     
     @MainActor
-    func test_天気予報の最低気温がUILabelに反映されること() async {
+    func test_天気予報の最低気温がUILabelに反映されること() {
         let expectedMinTemperature = -100
-        weatherForecastProvider.setWeatherForecast(.init(
-            weatherCondition: .cloudy,
-            maxTemperature: 0,
-            minTemperature: expectedMinTemperature,
-            date: Date()
-        ))
-        
-        await vc.loadAndSetWeatherForecast() // Act
+        weatherForecastProvider.setWeatherForecast(
+            .init(
+                weatherCondition: .cloudy,
+                maxTemperature: 0,
+                minTemperature: expectedMinTemperature,
+                date: Date()
+            ))
+
+        vc.fetchWeatherForecast()
 
         guard let labelTextValue = Int(vc.minTemperatureLabel.text ?? "") else {
             XCTFail("minTemperatureLabel.text が nil または Int に変換できない")
@@ -108,7 +125,8 @@ final class WeatherViewControllerTest: XCTestCase {
 extension WeatherViewControllerTest {
     private final class WeatherForecastProviderMock: WeatherForecastProvider {
         private(set) var weatherForecast: WeatherForecast?
-        
+        weak var delegate: YumemiWeatherAPIClientDelegate?
+
         func setWeatherForecast(_ weatherForecast: WeatherForecast) {
             self.weatherForecast = weatherForecast
         }
@@ -123,13 +141,28 @@ extension WeatherViewControllerTest {
         }
         
         // MARK: - WeatherForecastProvider Protocol
+
+        func fetchWeatherForecast() {
+            do {
+                let forecast = try getWeatherForecast()
+                delegate?.didGetWeatherForecast(forecast)
+            } catch {
+                delegate?.didGetWeatherForecastWithError(error)
+            }
+        }
         
-        func getWeatherForecast() throws -> iOS_training_Taichone.WeatherForecast {
+        private func getWeatherForecast() throws -> iOS_training_Taichone.WeatherForecast {
             if let weatherForecast = weatherForecast {
                 return weatherForecast
             } else {
                 throw NSError()
             }
         }
+    }
+}
+
+class ImmediateScheduler: SchedulerObject {
+    func runOnMainThread(_ block: @escaping () -> Void) {
+        block()
     }
 }

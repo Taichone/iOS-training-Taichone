@@ -14,9 +14,15 @@ final class WeatherViewController: UIViewController {
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     private let weatherForecastProvider: WeatherForecastProvider
-    
-    init?(coder: NSCoder, weatherForecastProvider: WeatherForecastProvider) {
+    private let schedulerObject: SchedulerObject
+       
+    init?(
+        coder: NSCoder,
+        weatherForecastProvider: WeatherForecastProvider,
+        schedulerObject: SchedulerObject = Scheduler()
+    ) {
         self.weatherForecastProvider = weatherForecastProvider
+        self.schedulerObject = schedulerObject
         super.init(coder: coder)
     }
     
@@ -47,29 +53,17 @@ final class WeatherViewController: UIViewController {
     @objc private func handleDidEnterForeground() {
         fetchWeatherForecast()
     }
+    
+    deinit {
+        print("WeatherViewController - deinit")
+    }
 }
 
 extension WeatherViewController {
     func fetchWeatherForecast() {
-        Task {
-            reloadButton.isEnabled = false
-            loadingIndicator.startAnimating()
-
-            await loadAndSetWeatherForecast()
-            
-            loadingIndicator.stopAnimating()
-            reloadButton.isEnabled = true
-        }
-    }
-    
-    func loadAndSetWeatherForecast() async {
-        do {
-            let forecast = try await weatherForecastProvider.getWeatherForecast() // sub thread
-            setWeatherForecast(forecast)
-        } catch {
-            let alertMessage = weatherErrorAlertMessage(from: error)
-            showWeatherErrorAlert(alertMessage: alertMessage)
-        }
+        reloadButton.isEnabled = false
+        loadingIndicator.startAnimating()
+        weatherForecastProvider.fetchWeatherForecast()
     }
     
     private func setWeatherForecast(_ forecast: WeatherForecast) {
@@ -97,7 +91,8 @@ extension WeatherViewController {
         }
     }
     
-    private func showWeatherErrorAlert(alertMessage: String) {
+    private func showWeatherErrorAlert(from error: Error) {
+        let alertMessage = self.weatherErrorAlertMessage(from: error)
         let alertController = UIAlertController(title: "天気予報の取得に失敗", message: alertMessage, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in }
         let retryAction = UIAlertAction(title: "再取得", style: .default) { _ in
@@ -107,6 +102,24 @@ extension WeatherViewController {
         alertController.addAction(cancelAction)
         alertController.addAction(retryAction)
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension WeatherViewController: YumemiWeatherAPIClientDelegate {
+    func didGetWeatherForecast(_ forecast: WeatherForecast) {
+        schedulerObject.runOnMainThread {
+            self.setWeatherForecast(forecast)
+            self.loadingIndicator.stopAnimating()
+            self.reloadButton.isEnabled = true
+        }
+    }
+    
+    func didGetWeatherForecastWithError(_ error: any Error) {
+        schedulerObject.runOnMainThread {
+            self.showWeatherErrorAlert(from: error)
+            self.loadingIndicator.stopAnimating()
+            self.reloadButton.isEnabled = true
+        }
     }
 }
 
@@ -128,5 +141,5 @@ private extension WeatherCondition {
 }
 
 protocol WeatherForecastProvider {
-    func getWeatherForecast() async throws -> WeatherForecast
+    func fetchWeatherForecast()
 }
