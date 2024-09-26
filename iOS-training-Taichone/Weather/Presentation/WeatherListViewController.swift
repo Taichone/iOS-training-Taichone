@@ -60,10 +60,7 @@ final class WeatherListViewController: UIViewController {
         )
         
         setTableView()
-        
-        Task {
-            await fetchAreaWeatherForecastList()
-        }
+        fetchList()
     }
     
     func setTableView() {
@@ -87,13 +84,13 @@ final class WeatherListViewController: UIViewController {
         )
         tableView.dataSource = dataSource
         tableView.delegate = self
+        
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(fetchList), for: .valueChanged)
     }
     
-    
     @IBAction func onTapReloadButton(_ sender: Any) {
-        Task {
-            await fetchAreaWeatherForecastList()
-        }
+        fetchList()
     }
     
     @IBAction private func onTapCloseButton(_ sender: Any) {
@@ -101,9 +98,7 @@ final class WeatherListViewController: UIViewController {
     }
 
     @objc private func handleDidEnterForeground() {
-        Task {
-            await fetchAreaWeatherForecastList()
-        }
+        fetchList()
     }
     
     deinit {
@@ -130,6 +125,12 @@ extension WeatherListViewController: UITableViewDelegate {
 }
 
 extension WeatherListViewController {
+    @objc func fetchList() {
+        Task {
+            await fetchAreaWeatherForecastList()
+        }
+    }
+    
     func fetchAreaWeatherForecastList() async {
         reloadButton.isEnabled = false
         loadingIndicator.startAnimating()
