@@ -119,20 +119,3 @@ extension WeatherViewController {
         present(alertController, animated: true, completion: nil)
     }
 }
-
-private extension WeatherCondition {
-    var imageName: String {
-        rawValue
-    }
-    
-    var tintColor: UIColor {
-        switch self {
-        case .cloudy:
-                .gray
-        case .rainy:
-                .blue
-        case .sunny:
-                .red
-        }
-    }
-}

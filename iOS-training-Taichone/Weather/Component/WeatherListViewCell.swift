@@ -24,4 +24,20 @@ class WeatherListViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func apply(itemModel: WeatherListItemModel) {
+        areaNameLabel.text = itemModel.areaWeatherForecast.area
+        minTemperatureLabel.text = "\(itemModel.areaWeatherForecast.forecast.minTemperature) ℃"
+        maxTemperatureLabel.text = "\(itemModel.areaWeatherForecast.forecast.maxTemperature) ℃"
+        setWeatherConditionImage(weatherCondition: itemModel.areaWeatherForecast.forecast.weatherCondition)
+    }
+    
+    private func setWeatherConditionImage(weatherCondition: WeatherCondition) {
+        guard let image = UIImage(named: weatherCondition.imageName) else { return }
+        weatherConditionImageView.image = image.withRenderingMode(.alwaysTemplate)
+        weatherConditionImageView.tintColor = weatherCondition.tintColor
+    }
+}
+
+extension WeatherListViewCell {
+    static let reuseIdentifier = "weatherListViewCell"
 }

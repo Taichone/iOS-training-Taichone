@@ -66,12 +66,22 @@ final class WeatherListViewController: UIViewController {
     }
     
     func setTableView() {
-//        dataSource = .init(
-//            tableView: tableView,
-//            cellProvider: { tableView, indexPath, item in
-//                let cell = 
-//            }
-//        )
+        dataSource = .init(
+            tableView: tableView,
+            cellProvider: { tableView, indexPath, item in
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: WeatherListViewCell.reuseIdentifier,
+                    for: indexPath
+                ) as! WeatherListViewCell
+                cell.apply(itemModel: item)
+                cell.separatorInset = .zero
+                return cell
+            }
+        )
+        
+        tableView.register(WeatherListViewCell.self, forCellReuseIdentifier: WeatherListViewCell.reuseIdentifier)
+        tableView.dataSource = dataSource
+        tableView.delegate = self
     }
     
     @IBAction private func onTapReloadButton(_ sender: Any) {
@@ -94,6 +104,8 @@ final class WeatherListViewController: UIViewController {
         print("WeatherViewController - deinit")
     }
 }
+
+extension WeatherListViewController: UITableViewDelegate {}
 
 extension WeatherListViewController {
     func fetchAreaWeatherForecastList() async {

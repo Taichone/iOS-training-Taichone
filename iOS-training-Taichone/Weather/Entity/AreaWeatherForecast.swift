@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AreaWeatherForecast {
+struct AreaWeatherForecast: Hashable {
     let area: String
     let forecast: WeatherForecast
 }

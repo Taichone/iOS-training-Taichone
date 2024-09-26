@@ -65,6 +65,7 @@
                     <connections>
                         <outlet property="loadingIndicator" destination="3Ic-sJ-XwP" id="OXN-a7-GGR"/>
                         <outlet property="reloadButton" destination="W3a-3g-hfX" id="lu2-3n-CXG"/>
+                        <outlet property="tableView" destination="REd-cd-4Os" id="zHg-BR-ftO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

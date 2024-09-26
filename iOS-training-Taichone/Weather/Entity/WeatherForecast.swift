@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherForecast {
+struct WeatherForecast: Hashable {
     let weatherCondition: WeatherCondition
     let maxTemperature: Int
     let minTemperature: Int
