@@ -66,7 +66,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="areaNameLabel" destination="5yq-XY-leZ" id="v84-bN-aoE"/>
+                <outlet property="areaNameLabel" destination="5yq-XY-leZ" id="vLc-Cn-1yY"/>
                 <outlet property="maxTemperatureLabel" destination="9cE-FX-mwB" id="V40-4Q-PWk"/>
                 <outlet property="minTemperatureLabel" destination="h80-TQ-UIx" id="l23-aw-7R7"/>
                 <outlet property="weatherConditionImageView" destination="CvS-Vu-Vb9" id="DGv-Vf-xzH"/>
