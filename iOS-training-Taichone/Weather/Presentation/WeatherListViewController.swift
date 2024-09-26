@@ -117,7 +117,7 @@ extension WeatherListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 92
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -135,7 +135,6 @@ extension WeatherListViewController {
         loadingIndicator.startAnimating()
         
         do {
-            // TODO: API からリストでもらい、反映する
             let areaWeatherForecastList = try await weatherForecastProvider.fetchWeatherAreaWeatherForecastList()
             bind(areaWeatherForecasts: areaWeatherForecastList)
         } catch {

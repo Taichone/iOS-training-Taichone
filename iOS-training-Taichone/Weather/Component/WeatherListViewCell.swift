@@ -26,8 +26,8 @@ class WeatherListViewCell: UITableViewCell {
     
     func apply(itemModel: WeatherListItemModel) {
         areaNameLabel.text = itemModel.areaWeatherForecast.area
-        minTemperatureLabel.text = "\(itemModel.areaWeatherForecast.forecast.minTemperature) ℃"
-        maxTemperatureLabel.text = "\(itemModel.areaWeatherForecast.forecast.maxTemperature) ℃"
+        minTemperatureLabel.text = "\(itemModel.areaWeatherForecast.forecast.minTemperature)℃"
+        maxTemperatureLabel.text = "\(itemModel.areaWeatherForecast.forecast.maxTemperature)℃"
         setWeatherConditionImage(weatherCondition: itemModel.areaWeatherForecast.forecast.weatherCondition)
     }
     
