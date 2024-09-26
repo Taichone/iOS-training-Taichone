@@ -102,7 +102,7 @@ final class WeatherListViewController: UIViewController {
     }
     
     deinit {
-        print("WeatherViewController - deinit")
+        print("WeatherDetailViewController - deinit")
     }
 }
 
@@ -119,11 +119,11 @@ extension WeatherListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
 
-        let storyboard = UIStoryboard(name: "Weather", bundle: nil)
+        let storyboard = UIStoryboard(name: "WeatherDetail", bundle: nil)
         guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
-            WeatherViewController(coder: coder, areaWeatherInfo: item.areaWeatherInfo)
+            WeatherDetailViewController(coder: coder, areaWeatherInfo: item.areaWeatherInfo)
         }) else {
-            fatalError("WeatherViewController could not be instantiated from Storyboard")
+            fatalError("WeatherDetailViewController could not be instantiated from Storyboard")
         }
         navigationController?.pushViewController(viewController, animated: true)
     }

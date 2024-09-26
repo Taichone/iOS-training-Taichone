@@ -1,5 +1,5 @@
 //
-//  WeatherViewController.swift
+//  WeatherDetailViewController.swift
 //  iOS-training-Taichone
 //
 //  Created by 三木 太智 on 2024/09/18.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class WeatherViewController: UIViewController {
+final class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var weatherConditionImageView: UIImageView!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
@@ -30,11 +30,11 @@ final class WeatherViewController: UIViewController {
     }
     
     deinit {
-        print("WeatherViewController - deinit")
+        print("WeatherDetailViewController - deinit")
     }
 }
 
-extension WeatherViewController {
+extension WeatherDetailViewController {
     private func setWeatherInfo(_ forecast: WeatherInfo) {
         setWeatherConditionImage(weatherCondition: forecast.weatherCondition)
         minTemperatureLabel.text = String(forecast.minTemperature)

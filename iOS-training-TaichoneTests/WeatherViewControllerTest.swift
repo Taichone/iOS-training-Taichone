@@ -1,5 +1,5 @@
 //
-//  WeatherViewControllerTest.swift
+//  WeatherDetailViewControllerTest.swift
 //  iOS-training-TaichoneTests
 //
 //  Created by 三木 太智 on 2024/09/20.
@@ -9,13 +9,13 @@ import XCTest
 import UIKit
 @testable import iOS_training_Taichone
 
-final class WeatherViewControllerTest: XCTestCase {
-    private func viewController(areaWeatherInfo: AreaWeatherInfo) -> WeatherViewController {
+final class WeatherDetailViewControllerTest: XCTestCase {
+    private func viewController(areaWeatherInfo: AreaWeatherInfo) -> WeatherDetailViewController {
         let storyboard = UIStoryboard(name: "Weather", bundle: nil)
         guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
-            WeatherViewController(coder: coder, areaWeatherInfo: areaWeatherInfo)
+            WeatherDetailViewController(coder: coder, areaWeatherInfo: areaWeatherInfo)
         }) else {
-            fatalError("WeatherViewController could not be instantiated from Storyboard")
+            fatalError("WeatherDetailViewController could not be instantiated from Storyboard")
         }
         viewController.loadViewIfNeeded()
         
