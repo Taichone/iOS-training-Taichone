@@ -28,7 +28,7 @@ final class WeatherDetailViewControllerTest: XCTestCase {
         
         let vc = viewController(areaWeatherInfo: .init(
             area: "",
-            forecast: .init(
+            info: .init(
                 weatherCondition: condition,
                 maxTemperature: 0,
                 minTemperature: 0,
@@ -52,7 +52,7 @@ final class WeatherDetailViewControllerTest: XCTestCase {
         
         let vc = viewController(areaWeatherInfo: .init(
             area: "",
-            forecast: .init(
+            info: .init(
                 weatherCondition: condition,
                 maxTemperature: 0,
                 minTemperature: 0,
@@ -76,7 +76,7 @@ final class WeatherDetailViewControllerTest: XCTestCase {
         
         let vc = viewController(areaWeatherInfo: .init(
             area: "",
-            forecast: .init(
+            info: .init(
                 weatherCondition: condition,
                 maxTemperature: 0,
                 minTemperature: 0,
@@ -100,7 +100,7 @@ final class WeatherDetailViewControllerTest: XCTestCase {
         
         let vc = viewController(areaWeatherInfo: .init(
             area: "",
-            forecast: .init(
+            info: .init(
                 weatherCondition: .sunny,
                 maxTemperature: expectedMaxTemperature,
                 minTemperature: 0,
@@ -121,7 +121,7 @@ final class WeatherDetailViewControllerTest: XCTestCase {
 
         let vc = viewController(areaWeatherInfo: .init(
             area: "",
-            forecast: .init(
+            info: .init(
                 weatherCondition: .sunny,
                 maxTemperature: 0,
                 minTemperature: expectedMinTemperature,

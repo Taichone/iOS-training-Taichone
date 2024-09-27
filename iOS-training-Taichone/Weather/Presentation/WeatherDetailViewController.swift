@@ -26,7 +26,7 @@ final class WeatherDetailViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = areaWeatherInfo.area
         navigationItem.largeTitleDisplayMode = .never
-        setWeatherInfo(areaWeatherInfo.forecast)
+        setWeatherInfo(areaWeatherInfo.info)
     }
     
     deinit {
@@ -35,10 +35,10 @@ final class WeatherDetailViewController: UIViewController {
 }
 
 extension WeatherDetailViewController {
-    private func setWeatherInfo(_ forecast: WeatherInfo) {
-        setWeatherConditionImage(weatherCondition: forecast.weatherCondition)
-        minTemperatureLabel.text = String(forecast.minTemperature)
-        maxTemperatureLabel.text = String(forecast.maxTemperature)
+    private func setWeatherInfo(_ info: WeatherInfo) {
+        setWeatherConditionImage(weatherCondition: info.weatherCondition)
+        minTemperatureLabel.text = String(info.minTemperature)
+        maxTemperatureLabel.text = String(info.maxTemperature)
     }
     
     private func setWeatherConditionImage(weatherCondition: WeatherCondition) {

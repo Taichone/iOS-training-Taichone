@@ -9,5 +9,5 @@ import Foundation
 
 struct AreaWeatherInfo: Hashable {
     let area: String
-    let forecast: WeatherInfo
+    let info: WeatherInfo
 }
