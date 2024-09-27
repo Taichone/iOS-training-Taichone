@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o6U-r1-SSX">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="o6U-r1-SSX">
                                 <rect key="frame" x="100.66666666666669" y="326.33333333333331" width="201" height="221.33333333333331"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="G6U-Hl-9eU">
@@ -53,8 +53,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="o6U-r1-SSX" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="bMn-he-SmW"/>
-                            <constraint firstItem="o6U-r1-SSX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eu6-aU-DYh"/>
+                            <constraint firstItem="o6U-r1-SSX" firstAttribute="width" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="9Yk-iH-Teq"/>
+                            <constraint firstItem="o6U-r1-SSX" firstAttribute="height" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.25" priority="999" id="Khm-Xy-NfR"/>
+                            <constraint firstItem="o6U-r1-SSX" firstAttribute="width" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.25" priority="999" id="QG5-at-a31"/>
+                            <constraint firstItem="o6U-r1-SSX" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="VPF-Mf-l7r"/>
+                            <constraint firstItem="o6U-r1-SSX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eu6-aU-DYh"/>
                             <constraint firstItem="o6U-r1-SSX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qtB-F1-V3d"/>
                         </constraints>
                     </view>
