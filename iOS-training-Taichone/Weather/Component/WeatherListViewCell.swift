@@ -12,18 +12,7 @@ final class WeatherListViewCell: UITableViewCell {
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var weatherConditionImageView: UIImageView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
     func apply(itemModel: WeatherListItemModel) {
         areaNameLabel.text = itemModel.areaWeatherInfo.area
         minTemperatureLabel.text = "\(itemModel.areaWeatherInfo.info.minTemperature)℃"
