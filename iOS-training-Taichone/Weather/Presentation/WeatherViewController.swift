@@ -60,6 +60,10 @@ extension WeatherViewController {
     func fetchWeatherForecast() async {
         reloadButton.isEnabled = false
         loadingIndicator.startAnimating()
+        defer {
+            loadingIndicator.stopAnimating()
+            reloadButton.isEnabled = true
+        }
         
         do {
             let forecast = try await weatherForecastProvider.fetchWeatherForecast()
@@ -67,9 +71,6 @@ extension WeatherViewController {
         } catch {
             showWeatherErrorAlert(from: error)
         }
-        
-        loadingIndicator.stopAnimating()
-        reloadButton.isEnabled = true
     }
     
     private func fetchWeatherForecast() {
