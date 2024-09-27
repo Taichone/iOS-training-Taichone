@@ -8,22 +8,10 @@
 import YumemiWeather
 import Foundation
 
-protocol SchedulerObject {
-    func runOnMainThread(_ block: @escaping () -> Void)
-}
-
-final class Scheduler: SchedulerObject {
-    func runOnMainThread(_ block: @escaping () -> Void) {
-        Task { @MainActor in
-            block()
-        }
-    }
-}
-
 final class YumemiWeatherAPIClient {}
 
 extension YumemiWeatherAPIClient: WeatherForecastProvider {
-    func getWeatherForecast() async throws -> WeatherForecast {
+    func fetchWeatherForecast() async throws -> WeatherForecast {
         let request = GetWeatherForecastRequest(
             area: Area.tokyo.rawValue, // NOTE: 現時点では指定されていないためハードコード
             date: Date()
@@ -36,16 +24,8 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
             throw YumemiWeatherAPIError.invalidRequestError
         }
         
-        do {
-            // 時間のかかる処理を async に対応させる
-            let responseJSON = try await withCheckedThrowingContinuation { continuation in
-                do {
-                    let responseJSON = try YumemiWeather.syncFetchWeather(requestJSON)
-                    continuation.resume(returning: responseJSON)
-                } catch {
-                    continuation.resume(throwing: error)
-                }
-            }
+        do {            
+            let responseJSON = try await YumemiWeather.asyncFetchWeather(requestJSON)
             
             let responseData = Data(responseJSON.utf8)
             let decoder = JSONDecoder()
@@ -64,17 +44,6 @@ extension YumemiWeatherAPIClient: WeatherForecastProvider {
                 }
             } else {
                 throw YumemiWeatherAPIError.invalidResponseError
-            }
-        }
-    }
-    
-    func fetchWeatherForecast(completion: @escaping ((Result<WeatherForecast, Error>) -> Void)) {
-        Task {
-            do {
-                let forecast = try await getWeatherForecast()
-                completion(.success(forecast))
-            } catch {
-                completion(.failure(error))
             }
         }
     }

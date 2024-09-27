@@ -14,15 +14,12 @@ final class WeatherViewController: UIViewController {
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     private let weatherForecastProvider: WeatherForecastProvider
-    private let schedulerObject: SchedulerObject
        
     init?(
         coder: NSCoder,
-        weatherForecastProvider: WeatherForecastProvider,
-        schedulerObject: SchedulerObject = Scheduler()
+        weatherForecastProvider: WeatherForecastProvider
     ) {
         self.weatherForecastProvider = weatherForecastProvider
-        self.schedulerObject = schedulerObject
         super.init(coder: coder)
     }
     
@@ -60,24 +57,25 @@ final class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController {
-    func fetchWeatherForecast() {
+    func fetchWeatherForecast() async {
         reloadButton.isEnabled = false
         loadingIndicator.startAnimating()
+        defer {
+            loadingIndicator.stopAnimating()
+            reloadButton.isEnabled = true
+        }
         
-        weatherForecastProvider.fetchWeatherForecast { [weak self] result in
-            guard let self = self else { return }
-            
-            schedulerObject.runOnMainThread {
-                switch result {
-                case .success(let forecast):
-                    self.setWeatherForecast(forecast)
-                case .failure(let error):
-                    self.showWeatherErrorAlert(from: error)
-                }
-                
-                self.loadingIndicator.stopAnimating()
-                self.reloadButton.isEnabled = true
-            }
+        do {
+            let forecast = try await weatherForecastProvider.fetchWeatherForecast()
+            setWeatherForecast(forecast)
+        } catch {
+            showWeatherErrorAlert(from: error)
+        }
+    }
+    
+    private func fetchWeatherForecast() {
+        Task {
+            await fetchWeatherForecast()
         }
     }
     
@@ -138,5 +136,5 @@ private extension WeatherCondition {
 }
 
 protocol WeatherForecastProvider {
-    func fetchWeatherForecast(completion: @escaping ((Result<WeatherForecast, Error>) -> Void))
+    func fetchWeatherForecast() async throws -> WeatherForecast
 }
