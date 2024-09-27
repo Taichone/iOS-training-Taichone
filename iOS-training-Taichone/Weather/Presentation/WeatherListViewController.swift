@@ -157,7 +157,7 @@ extension WeatherListViewController {
         
         // NOTE: 現時点では複数 section は考慮していない
         let section = WeatherListSectionModel(title: "地域別")
-        let items: [WeatherListItemModel] = areaWeatherInfos.compactMap {
+        let items: [WeatherListItemModel] = areaWeatherInfos.map {
             .init(areaWeatherInfo: $0)
         }
         
