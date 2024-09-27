@@ -157,9 +157,7 @@ extension WeatherListViewController {
         
         // NOTE: 現時点では複数 section は考慮していない
         let section = WeatherListSectionModel(title: "地域別")
-        let items: [WeatherListItemModel] = areaWeatherInfos.map {
-            .init(areaWeatherInfo: $0)
-        }
+        let items = areaWeatherInfos.map(WeatherListItemModel.init)
         
         snapShot.appendSections([section])
         snapShot.appendItems(items, toSection: section)
