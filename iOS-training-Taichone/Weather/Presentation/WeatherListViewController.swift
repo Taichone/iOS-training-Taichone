@@ -133,9 +133,6 @@ extension WeatherListViewController {
     @objc func fetchList() {
         Task {
             await fetchAreaWeatherInfoList()
-            DispatchQueue.main.async {
-                self.tableView.refreshControl?.endRefreshing()
-            }
         }
     }
     
@@ -147,10 +144,10 @@ extension WeatherListViewController {
             let areaWeatherInfoList = try await weatherProvider.fetchAreaWeatherInfoList()
             bind(areaWeatherInfos: areaWeatherInfoList)
         } catch {
-            let alertMessage = self.weatherErrorAlertMessage(from: error)
-            self.showWeatherErrorAlert(alertMessage: alertMessage)
+            self.showWeatherErrorAlert(from: error)
         }
         
+        self.tableView.refreshControl?.endRefreshing()
         self.loadingIndicator.stopAnimating()
         self.reloadButton.isEnabled = true
     }
@@ -182,7 +179,8 @@ extension WeatherListViewController {
         }
     }
     
-    private func showWeatherErrorAlert(alertMessage: String) {
+    private func showWeatherErrorAlert(from error: Error) {
+        let alertMessage = weatherErrorAlertMessage(from: error)
         let alertController = UIAlertController(title: "天気予報の取得に失敗", message: alertMessage, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in }
         let retryAction = UIAlertAction(title: "再取得", style: .default) { _ in
