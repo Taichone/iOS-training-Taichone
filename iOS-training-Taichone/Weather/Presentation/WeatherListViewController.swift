@@ -161,7 +161,7 @@ extension WeatherListViewController {
         
         snapShot.appendSections([section])
         snapShot.appendItems(items, toSection: section)
-        dataSource.apply(snapShot)
+        dataSource.apply(snapShot, animatingDifferences: false)
     }
     
     private func weatherErrorAlertMessage(from error: Error) -> String {
