@@ -11,7 +11,7 @@ import UIKit
 
 final class WeatherDetailViewControllerTest: XCTestCase {
     private func viewController(areaWeatherInfo: AreaWeatherInfo) -> WeatherDetailViewController {
-        let storyboard = UIStoryboard(name: "Weather", bundle: nil)
+        let storyboard = UIStoryboard(name: "WeatherDetail", bundle: nil)
         guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
             WeatherDetailViewController(coder: coder, areaWeatherInfo: areaWeatherInfo)
         }) else {
