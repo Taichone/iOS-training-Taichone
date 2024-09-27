@@ -63,7 +63,7 @@ final class WeatherListViewController: UIViewController {
         fetchList()
     }
     
-    func setTableView() {
+    private func setTableView() {
         dataSource = .init(
             tableView: tableView,
             cellProvider: { tableView, indexPath, item in

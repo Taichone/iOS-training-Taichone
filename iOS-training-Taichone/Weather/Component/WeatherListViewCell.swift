@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherListViewCell: UITableViewCell {
+final class WeatherListViewCell: UITableViewCell {
     @IBOutlet weak var areaNameLabel: UILabel!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
