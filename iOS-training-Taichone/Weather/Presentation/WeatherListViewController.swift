@@ -30,8 +30,6 @@ struct WeatherListItemModel: Hashable {
 }
 
 final class WeatherListViewController: UIViewController {
-    static let storyboardName: String = ""
-    
     private typealias SnapShot = NSDiffableDataSourceSnapshot<WeatherListSectionModel, WeatherListItemModel>
     private typealias DataSource = UITableViewDiffableDataSource<WeatherListSectionModel, WeatherListItemModel>
     
@@ -42,8 +40,8 @@ final class WeatherListViewController: UIViewController {
     private let weatherProvider: WeatherProvider
     private var dataSource: DataSource!
     
-    init?(coder: NSCoder, weatherProvider: WeatherProvider) {
-        self.weatherProvider = weatherProvider
+    init?(coder: NSCoder, args: Args) {
+        self.weatherProvider = args.weatherProvider
         super.init(coder: coder)
     }
     
@@ -192,5 +190,13 @@ extension WeatherListViewController {
         alertController.addAction(cancelAction)
         alertController.addAction(retryAction)
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension WeatherListViewController: Instantiatable {
+    typealias Args = Arguments
+    
+    struct Arguments {
+        let weatherProvider: WeatherProvider
     }
 }

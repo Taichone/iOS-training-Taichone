@@ -17,14 +17,8 @@ final class RootViewController: UIViewController {
         super.viewDidAppear(true)
         
         let apiClient = YumemiWeatherAPIClient()
-        let storyboard = UIStoryboard(name: "WeatherList", bundle: nil)
-        guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
-            WeatherListViewController(coder: coder, weatherProvider: apiClient)
-        }) else {
-            fatalError("WeatherListViewController could not be instantiated from Storyboard")
-        }
-        
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let vc = WeatherListViewController.instantiateFromStoryboard(with: .init(weatherProvider: apiClient))
+        let navigationController = UINavigationController(rootViewController: vc)
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: true)
     }
