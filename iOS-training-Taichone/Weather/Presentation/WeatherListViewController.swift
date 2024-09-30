@@ -30,6 +30,8 @@ struct WeatherListItemModel: Hashable {
 }
 
 final class WeatherListViewController: UIViewController {
+    static let storyboardName: String = ""
+    
     private typealias SnapShot = NSDiffableDataSourceSnapshot<WeatherListSectionModel, WeatherListItemModel>
     private typealias DataSource = UITableViewDiffableDataSource<WeatherListSectionModel, WeatherListItemModel>
     

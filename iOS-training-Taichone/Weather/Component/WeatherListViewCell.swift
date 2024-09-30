@@ -21,8 +21,7 @@ final class WeatherListViewCell: UITableViewCell {
     }
     
     private func setWeatherConditionImage(weatherCondition: WeatherCondition) {
-        guard let image = UIImage(named: weatherCondition.imageName) else { return }
-        weatherConditionImageView.image = image.withRenderingMode(.alwaysTemplate)
+        weatherConditionImageView.image = weatherCondition.image.withRenderingMode(.alwaysTemplate)
         weatherConditionImageView.tintColor = weatherCondition.tintColor
     }
 }
