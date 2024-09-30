@@ -151,7 +151,7 @@ extension WeatherListViewController {
         var snapShot = SnapShot()
         
         // NOTE: 現時点では複数 section は考慮していない
-        let section = WeatherListSectionModel(title: "地域別")
+        let section = WeatherListSectionModel(title: String(localized: "by-area"))
         let items = areaWeatherInfos.map(WeatherListItemModel.init)
         
         snapShot.appendSections([section])
@@ -164,19 +164,26 @@ extension WeatherListViewController {
         
         switch yumemiWeatherAPIError {
         case .apiInvalidParameterError, .invalidRequestError:
-            return "要求にエラーが発生し、天気予報を取得できませんでした。"
+            // "要求にエラーが発生し、天気予報を取得できませんでした。"
+            return String(localized: "error-message-request")
         case .invalidResponseError:
-            return "応答にエラーが発生し、天気予報を取得できませんでした。"
+            // "応答にエラーが発生し、天気予報を取得できませんでした。"
+            return String(localized: "error-message-response")
         case .apiUnknownError, nil:
-            return "不明なエラーが発生し、天気予報を取得できませんでした。"
+            // "不明なエラーが発生し、天気予報を取得できませんでした。"
+            return String(localized: "error-message-unknown")
         }
     }
     
     private func showWeatherErrorAlert(from error: Error) {
         let alertMessage = weatherErrorAlertMessage(from: error)
-        let alertController = UIAlertController(title: "天気予報の取得に失敗", message: alertMessage, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in }
-        let retryAction = UIAlertAction(title: "再取得", style: .default) { _ in
+        let alertController = UIAlertController(
+            title: String(localized: "failed-to-retrieve-weather"),
+            message: alertMessage,
+            preferredStyle: .alert
+        )
+        let cancelAction = UIAlertAction(title: String(localized: "cancel"), style: .cancel) { _ in }
+        let retryAction = UIAlertAction(title: String(localized: "retry"), style: .default) { _ in
             Task {
                 await self.fetchAreaWeatherInfoList()
             }
