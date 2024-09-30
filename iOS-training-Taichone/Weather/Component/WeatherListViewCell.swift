@@ -14,7 +14,7 @@ final class WeatherListViewCell: UITableViewCell {
     @IBOutlet weak var weatherConditionImageView: UIImageView!
 
     func apply(itemModel: WeatherListItemModel) {
-        areaNameLabel.text = itemModel.areaWeatherInfo.area
+        areaNameLabel.text = itemModel.areaWeatherInfo.area.localized
         minTemperatureLabel.text = "\(itemModel.areaWeatherInfo.info.minTemperature)℃"
         maxTemperatureLabel.text = "\(itemModel.areaWeatherInfo.info.maxTemperature)℃"
         setWeatherConditionImage(weatherCondition: itemModel.areaWeatherInfo.info.weatherCondition)

@@ -8,6 +8,6 @@
 import Foundation
 
 struct AreaWeatherInfo: Hashable {
-    let area: String
+    let area: Area
     let info: WeatherInfo
 }

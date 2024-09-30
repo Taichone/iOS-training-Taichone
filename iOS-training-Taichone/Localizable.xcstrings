@@ -98,7 +98,6 @@
       }
     },
     "fukuoka" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -115,7 +114,6 @@
       }
     },
     "hiroshima" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -132,7 +130,6 @@
       }
     },
     "kagoshima" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -149,7 +146,6 @@
       }
     },
     "kanazawa" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -166,7 +162,6 @@
       }
     },
     "kochi" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -183,7 +178,6 @@
       }
     },
     "nagoya" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -200,7 +194,6 @@
       }
     },
     "naha" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -217,7 +210,6 @@
       }
     },
     "niigata" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -234,7 +226,6 @@
       }
     },
     "osaka" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -267,7 +258,6 @@
       }
     },
     "sapporo" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -284,7 +274,6 @@
       }
     },
     "sendai" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -301,7 +290,6 @@
       }
     },
     "tokyo" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

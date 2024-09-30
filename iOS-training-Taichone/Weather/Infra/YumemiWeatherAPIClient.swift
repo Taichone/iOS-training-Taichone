@@ -101,7 +101,7 @@ extension YumemiWeatherAPIClient: WeatherProvider {
     }
     
     struct FetchWeatherListResponse: Decodable {
-        let area: String
+        let area: Area
         let info: Info
 
         func convertToAreaWeatherInfo() throws -> AreaWeatherInfo {
