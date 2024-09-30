@@ -119,13 +119,8 @@ extension WeatherListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
 
-        let storyboard = UIStoryboard(name: "WeatherDetail", bundle: nil)
-        guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
-            WeatherDetailViewController(coder: coder, areaWeatherInfo: item.areaWeatherInfo)
-        }) else {
-            fatalError("WeatherDetailViewController could not be instantiated from Storyboard")
-        }
-        navigationController?.pushViewController(viewController, animated: true)
+        let vc = WeatherDetailViewController.instantiateFromStoryboard(with: .init(areaWeatherInfo: item.areaWeatherInfo))
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

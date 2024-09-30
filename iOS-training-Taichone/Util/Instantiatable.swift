@@ -8,6 +8,10 @@ protocol Instantiatable {
 }
 
 extension Instantiatable where Self: UIViewController {
+    static var storyboardName: String {
+        return ""
+    }
+    
     private static var _storyboardName: String {
         if storyboardName.isEmpty {
             return className
