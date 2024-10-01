@@ -11,15 +11,9 @@ import UIKit
 
 final class WeatherDetailViewControllerTest: XCTestCase {
     private func viewController(areaWeatherInfo: AreaWeatherInfo) -> WeatherDetailViewController {
-        let storyboard = UIStoryboard(name: "WeatherDetail", bundle: nil)
-        guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
-            WeatherDetailViewController(coder: coder, areaWeatherInfo: areaWeatherInfo)
-        }) else {
-            fatalError("WeatherDetailViewController could not be instantiated from Storyboard")
-        }
-        viewController.loadViewIfNeeded()
-        
-        return viewController
+        let vc = WeatherDetailViewController.instantiateFromStoryboard(with: .init(areaWeatherInfo: areaWeatherInfo))
+        vc.loadViewIfNeeded()
+        return vc
     }
 
     @MainActor

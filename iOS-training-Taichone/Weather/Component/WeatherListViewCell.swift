@@ -14,15 +14,14 @@ final class WeatherListViewCell: UITableViewCell {
     @IBOutlet weak var weatherConditionImageView: UIImageView!
 
     func apply(itemModel: WeatherListItemModel) {
-        areaNameLabel.text = itemModel.areaWeatherInfo.area
+        areaNameLabel.text = itemModel.areaWeatherInfo.area.localized
         minTemperatureLabel.text = "\(itemModel.areaWeatherInfo.info.minTemperature)℃"
         maxTemperatureLabel.text = "\(itemModel.areaWeatherInfo.info.maxTemperature)℃"
         setWeatherConditionImage(weatherCondition: itemModel.areaWeatherInfo.info.weatherCondition)
     }
     
     private func setWeatherConditionImage(weatherCondition: WeatherCondition) {
-        guard let image = UIImage(named: weatherCondition.imageName) else { return }
-        weatherConditionImageView.image = image.withRenderingMode(.alwaysTemplate)
+        weatherConditionImageView.image = weatherCondition.image.withRenderingMode(.alwaysTemplate)
         weatherConditionImageView.tintColor = weatherCondition.tintColor
     }
 }

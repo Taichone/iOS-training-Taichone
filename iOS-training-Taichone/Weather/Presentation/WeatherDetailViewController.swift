@@ -13,8 +13,8 @@ final class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     private let areaWeatherInfo: AreaWeatherInfo
     
-    init?(coder: NSCoder, areaWeatherInfo: AreaWeatherInfo) {
-        self.areaWeatherInfo = areaWeatherInfo
+    init?(coder: NSCoder, args: Args) {
+        self.areaWeatherInfo = args.areaWeatherInfo
         super.init(coder: coder)
     }
     
@@ -24,7 +24,7 @@ final class WeatherDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = areaWeatherInfo.area
+        navigationItem.title = areaWeatherInfo.area.localized
         navigationItem.largeTitleDisplayMode = .never
         setWeatherInfo(areaWeatherInfo.info)
     }
@@ -42,8 +42,15 @@ extension WeatherDetailViewController {
     }
     
     private func setWeatherConditionImage(weatherCondition: WeatherCondition) {
-        guard let image = UIImage(named: weatherCondition.imageName) else { return }
-        weatherConditionImageView.image = image.withRenderingMode(.alwaysTemplate)
+        weatherConditionImageView.image = weatherCondition.image.withRenderingMode(.alwaysTemplate)
         weatherConditionImageView.tintColor = weatherCondition.tintColor
+    }
+}
+
+extension WeatherDetailViewController: Instantiatable {
+    typealias Args = Arguments
+    
+    struct Arguments {
+        let areaWeatherInfo: AreaWeatherInfo
     }
 }

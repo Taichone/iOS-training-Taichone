@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit.UIColor
+import UIKit.UIImage
 
 enum WeatherCondition: String {
     case cloudy
@@ -15,8 +16,15 @@ enum WeatherCondition: String {
 }
 
 extension WeatherCondition {
-    var imageName: String {
-        rawValue
+    var image: UIImage {
+        switch self {
+        case .cloudy:
+                .cloudy
+        case .rainy:
+                .rainy
+        case .sunny:
+                .sunny
+        }
     }
     
     var tintColor: UIColor {

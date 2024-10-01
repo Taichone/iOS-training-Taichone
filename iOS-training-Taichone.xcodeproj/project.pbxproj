@@ -34,7 +34,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		74CEA9942C9A9383000F94B4 /* Exceptions for "iOS-training-Taichone" folder in "iOS-training-Taichone" target */ = {
+		741857B52CAB000E005DBD0D /* Exceptions for "iOS-training-Taichone" folder in "iOS-training-Taichone" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -44,10 +44,10 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		74CEA96E2C9A9382000F94B4 /* iOS-training-Taichone */ = {
+		7418579E2CAB000E005DBD0D /* iOS-training-Taichone */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				74CEA9942C9A9383000F94B4 /* Exceptions for "iOS-training-Taichone" folder in "iOS-training-Taichone" target */,
+				741857B52CAB000E005DBD0D /* Exceptions for "iOS-training-Taichone" folder in "iOS-training-Taichone" target */,
 			);
 			path = "iOS-training-Taichone";
 			sourceTree = "<group>";
@@ -88,7 +88,7 @@
 		74CEA9632C9A9382000F94B4 = {
 			isa = PBXGroup;
 			children = (
-				74CEA96E2C9A9382000F94B4 /* iOS-training-Taichone */,
+				7418579E2CAB000E005DBD0D /* iOS-training-Taichone */,
 				74CEA9852C9A9383000F94B4 /* iOS-training-TaichoneTests */,
 				74CEA96D2C9A9382000F94B4 /* Products */,
 			);
@@ -120,7 +120,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				74CEA96E2C9A9382000F94B4 /* iOS-training-Taichone */,
+				7418579E2CAB000E005DBD0D /* iOS-training-Taichone */,
 			);
 			name = "iOS-training-Taichone";
 			packageProductDependencies = (
@@ -202,6 +202,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 74CEA9632C9A9382000F94B4;
 			minimizedProjectReferenceProxies = 1;
@@ -395,6 +396,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -451,6 +453,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
